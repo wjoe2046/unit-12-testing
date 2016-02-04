@@ -1,0 +1,22 @@
+{
+  "name": "testing-module",
+  "version": "1.0.0",
+  "description": "Codesmith testing module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodesmithLLC/testing-module.git"
+  },
+  "author": "David Petri <petridw@gmail.com> (davidpetri.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodesmithLLC/testing-module/issues"
+  },
+  "homepage": "https://github.com/CodesmithLLC/testing-module#readme",
+  "dependencies": {
+    "mocha": "^2.4.5"
+  }
+}
