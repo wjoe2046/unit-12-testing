@@ -53,17 +53,22 @@
   },
   "homepage": "https://github.com/CodesmithLLC/testing-module#readme",
   "dependencies": {
+    "apicache": "0.0.12",
+    "async": "^1.5.2",
     "babel-core": "^6.0.20",
     "babel-eslint": "^4.1.3",
     "babel-loader": "^6.0.1",
     "babel-preset-es2015": "^6.0.15",
     "babel-preset-react": "^6.0.15",
     "babelify": "^7.2.0",
+    "cheerio": "^0.20.0",
     "express": "^4.13.4",
+    "faker": "^3.0.1",
     "mocha": "^2.4.5",
     "path": "^0.12.7",
     "react": "^0.14",
     "react-dom": "^0.14.0",
+    "request": "^2.69.0",
     "webpack": "^1.12.2"
   },
   "devDependencies": {
