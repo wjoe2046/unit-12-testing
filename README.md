@@ -1,2 +1,1 @@
-# testing-module
-Testing module
+# React Boilerplate
