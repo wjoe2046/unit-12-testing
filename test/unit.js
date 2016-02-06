@@ -1,4 +1,4 @@
-var util = require(`../../server/util`);
+var util = require(`../server/util`);
 
 /**
 * include your assertion library here

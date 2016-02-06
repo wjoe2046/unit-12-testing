@@ -4,7 +4,7 @@
   "description": "Codesmith testing module",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "mocha --recursive test/",
+    "test": "mocha --timeout 8000 --recursive test/",
     "coverage": "istanbul cover _mocha -- -R spec"
   },
   "repository": {

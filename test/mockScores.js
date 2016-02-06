@@ -1,3 +1,6 @@
+// For our tests, we'll use these mock scores so that we don't interact with the
+// actual scores
+
 module.exports = [
   {
     name: 'Josh',
