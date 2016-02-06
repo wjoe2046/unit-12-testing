@@ -1,0 +1,24 @@
+{
+  "name": "testing-module",
+  "description": "Codesmith testing module",
+  "main": "index.js",
+  "authors": [
+    "David Petri <petridw@gmail.com> (davidpetri.com)"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/petridw/testing-module",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "mocha": "^2.4.5",
+    "jquery": "^2.2.0",
+    "sinonjs": "^1.17.1",
+    "expect": "^0.3.1"
+  }
+}

@@ -18,11 +18,12 @@ The purpose of this unit is to give you practice adding tests to someone else's 
 
 ## Challenges
 Your client has assigned you the task of cleaning up this codebase. To fulfill your contract, you'll need to achieve the following:
-  - [ ] 100% test coverage of this library
-  - [ ] Unit tests for `server/util.js`
+  - [ ] Write unit tests for `server/util.js`
+  - [ ] Write front-end unit tests for some of jQuery functionality in `public/js/main.js`
   - [ ] Integration tests
     - Headless browser integration testing with [Zombie](http://zombie.js.org/)
     - Backend API testing of routes with [supertest](https://github.com/visionmedia/supertest)
+  - [ ] Add a code-coverage library
 
 ## Extension
 Your client wants the following features added to this app. Write tests for each currently nonexistent feature listed below, and then implement the feature to pass your tests (if you have time).

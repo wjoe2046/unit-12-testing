@@ -1,0 +1,99 @@
+<!doctype html>
+
+<head>
+  <title>Boggle</title>
+  <script src="../../public/lib/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+  <div id="logo-container">
+    <img src="images/logo.png">
+  </div>
+  <div id="board">
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+      <div class="square" ></div>
+    
+  </div>
+  <div id="currentWord">
+    <strong>Current word:</strong> <span></span>
+    <button>Submit</button>
+  </div>
+  <table id="score">
+    <thead>
+      <tr>
+        <td>Word</td>
+        <td>Score</td>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Total</td>
+        <td>0</td>
+      </tr>
+    </tfoot>
+  </table>
+  <button id="highScore">Submit high score</button>
+  
+  <div id="mocha"></div>
+  <script src="../../public/lib/mocha/mocha.js"></script>
+  <script src="../../public/lib/expect/index.js"></script>
+  <script src="../../public/lib/sinonjs/sinon.js"></script>
+  <script>
+    mocha.ui('bdd')
+  </script>
+  <script type="text/javascript" src="../../public/js/main.js"></script>
+  <script type="text/javascript" src="../frontEnd.js"></script>
+  <script>
+    mocha.run()
+  </script>
+</body>

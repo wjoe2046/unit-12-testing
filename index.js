@@ -12,7 +12,7 @@ app.use(harp.mount(__dirname + "/public"));
 app.use(bodyparser.json());
 
 app.get('/scores', (req, res) => {
-  // TODO: Fix this route
+  // TODO: Fix this route to make its tests pass
   res.send('hi');
 });
 
@@ -28,6 +28,7 @@ app.post('/score', (req, res) => {
 });
 
 var port = process.env.PORT || 3000;
+
 app.listen(port, function() {
   console.log("Listening on port " + port);
 });
