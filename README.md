@@ -1,8 +1,7 @@
-# testing-module
-Testing module
+# Testing Module
 
 ## About
-In this module you'll be taking an existing codebase which the previous developer did not follow best practices when coding. The codebase has no tests, may not be written in an object-oriented approach, and has functionality that is potentially unreliable.
+In this module you'll be taking an existing codebase which the previous developer did not follow best practices when coding. The codebase has few tests, may not be written in an object-oriented approach, and has functionality that is potentially unreliable.
 
 The purpose of this unit is to give you practice adding tests to someone else's code, and to hopefully teach you why it's a good idea to always write tests for your code. You'll gain familiarity and practice with mocha, zombie, supertest, and different assertion libraries of your choice.
 
