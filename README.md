@@ -15,7 +15,6 @@ The purpose of this unit is to give you practice adding tests to someone else's 
 ## Getting Started
 - The files you will be working in are `server/util.js`, `test/`, `index.js`, and potentially in `public/js/main.js`. It wouldn't hurt to take a look around and get a feel for the rest of the code base though.
 - You'll need to do a combination of writing tests, changing functionality in order to make tests pass, and potentially adding new functionality for the tests you've written.
-- 
 
 ## Challenges
 Your client has assigned you the task of cleaning up this codebase. To fulfill your contract, you'll need to achieve the following:
