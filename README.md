@@ -4,21 +4,25 @@ Testing module
 ## About
 In this module you'll be taking an existing codebase which the previous developer did not follow best practices when coding. The codebase has no tests, may not be written in an object-oriented approach, and has functionality that is potentially unreliable.
 
-The purpose of this unit is to give you practice adding tests to someone else's code, and to hopefully teach you why it's a good idea to always write tests for your code. You'll gain familiarity and practice with mocha, zombie, supertest, and the assertion library of your choice.
+The purpose of this unit is to give you practice adding tests to someone else's code, and to hopefully teach you why it's a good idea to always write tests for your code. You'll gain familiarity and practice with mocha, zombie, supertest, and different assertion libraries of your choice.
 
 ## Setup
 - [ ] run `npm install`
 - [ ] `npm start` to start your server on port 3000 and test it out
 - [ ] `npm test` to run your test suite
 
+## Getting Started
+- The files you will be working in are `server/util.js`, `test/`, `index.js`, and potentially in `public/js/main.js`. It wouldn't hurt to take a look around and get a feel for the rest of the code base though.
+- You'll need to do a combination of writing tests, changing functionality in order to make tests pass, and potentially adding new functionality for the tests you've written.
+- 
+
 ## Challenges
 Your client has assigned you the task of cleaning up this codebase. To fulfill your contract, you'll need to achieve the following:
   - [ ] 100% test coverage of this library
-  - [ ] Unit tests for each function in `public/js/main.js`
-  - [ ] Unit tests for each function in `server/util.js`
+  - [ ] Unit tests for `server/util.js`
   - [ ] Integration tests
     - Headless browser integration testing with [Zombie](http://zombie.js.org/)
-    - Backend API testing with [supertest](https://github.com/visionmedia/supertest)
+    - Backend API testing of routes with [supertest](https://github.com/visionmedia/supertest)
 
 ## Extension
 Your client wants the following features added to this app. Write tests for each currently nonexistent feature listed below, and then implement the feature to pass your tests (if you have time).
