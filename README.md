@@ -10,6 +10,7 @@ The purpose of this unit is to give you practice adding tests to someone else's 
 - [ ] run `npm install`
 - [ ] `npm start` to start your server on port 3000 and test it out
 - [ ] `npm test` to run your test suite
+- [ ] `bower install` to install front-end testing dependencies
 
 ## Getting Started
 - The files you will be working in are `server/util.js`, `test/`, `index.js`, and potentially in `public/js/main.js`. It wouldn't hurt to take a look around and get a feel for the rest of the code base though.
