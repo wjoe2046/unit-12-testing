@@ -7,6 +7,7 @@ var util = {};
 * @param highScores - Array
 */
 util.insertScore = function(newScore, highScores) {
+  // TODO: Fix me so that my tests pass
   return highScores.push(newScore);
 };
 

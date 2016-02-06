@@ -1,4 +1,5 @@
-var app = require('../');
+// require('blanket');
+var app = require('../index.js');
 const request = require('supertest');
 
 /**
@@ -13,7 +14,7 @@ describe('integration tests for routes', () => {
   describe('/scores', () => {
     
     it('responds to GET request to /scores', done => {
-      request(app)
+      request('http://localhost:3000')
         .get('/scores')
         .expect('Content-Type', /json/)
         .expect(200, done);

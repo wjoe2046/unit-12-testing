@@ -4,7 +4,7 @@
   "description": "Codesmith testing module",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "mocha --timeout 8000 --recursive test/",
+    "test": "mocha --timeout 8000 --recursive test/ -R nyan",
     "coverage": "istanbul cover _mocha -- -R spec"
   },
   "repository": {
@@ -20,6 +20,7 @@
   "dependencies": {
     "babel-preset-es2015": "^6.3.13",
     "babelify": "^7.2.0",
+    "blanket": "^1.2.1",
     "body-parser": "^1.14.2",
     "chai": "^3.5.0",
     "expect": "^1.14.0",

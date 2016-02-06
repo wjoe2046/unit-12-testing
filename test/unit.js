@@ -1,3 +1,4 @@
+// require('blanket');
 var util = require(`../server/util`);
 
 /**
@@ -9,7 +10,7 @@ var expect = require('expect');
 
 describe('Server unit tests', () => {
   
-  describe('insertScore', () => {
+  describe('insertScore function', () => {
     var highScores = require('./mockScores');
     var newScore;
     

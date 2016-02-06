@@ -1,3 +1,4 @@
+// require('blanket');
 var app = require('../');
 var Browser = require('zombie');
 

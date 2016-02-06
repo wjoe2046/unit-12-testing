@@ -12,7 +12,8 @@ app.use(harp.mount(__dirname + "/public"));
 app.use(bodyparser.json());
 
 app.get('/scores', (req, res) => {
-  res.send(highScores.slice(0, 10));
+  // TODO: Fix this route
+  res.send('hi');
 });
 
 app.post('/score', (req, res) => {
