@@ -1,34 +1,29 @@
 const express = require('express');
 const harp = require('harp');
 const bodyparser = require('body-parser');
+const Boggle = require('solve-boggle');
 
-var highScores = require('./scores').sort((a, b) => b.score - a.score);
+const app = express();
 
-var app = express();
-
-app.use(express.static(__dirname + "/public"));
-app.use(harp.mount(__dirname + "/public"));
+app.use(express.static(`${__dirname}/public`));
+app.use(harp.mount(`${__dirname}/public`));
 
 app.use(bodyparser.json());
 
-app.get('/scores', (req, res) => {
-  // TODO: Fix this route to make its tests pass
-  res.send('hi');
+/**
+* Server responds to POST requests to /solve route by sending a JSON array of all of the
+* possible words for the provided boggle board
+*/
+app.post('/solve', (req, res) => {
+  if (!req.body.letters || req.body.letters.length !== 25) {
+    return res.status(400).send('invalid board');
+  }
+
+  const board = new Boggle(req.body.letters);
+
+  return board.solve(words => res.json(words));
 });
 
-app.post('/score', (req, res) => {
-  if (!req.body.name || !req.body.score) return res.status(422).send({ error: 'Invalid data' });
-  
-  var newScore = {
-    name: req.body.name,
-    score: req.body.score
-  };
-  
-  return res.send(insertScore(newScore, highScores));
-});
+const port = process.env.PORT || 3000;
 
-var port = process.env.PORT || 3000;
-
-app.listen(port, function() {
-  console.log("Listening on port " + port);
-});
+app.listen(port);

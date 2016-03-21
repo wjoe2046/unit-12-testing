@@ -1,66 +1,67 @@
 <!doctype html>
 
+<html>
+
 <head>
   <title>Boggle</title>
-  <script src="../../public/lib/jquery/dist/jquery.js"></script>
 </head>
 
 <body>
   <div id="logo-container">
-    <img src="images/logo.png">
+
   </div>
   <div id="board">
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
       <div class="square" ></div>
-    
+
   </div>
   <div id="currentWord">
     <strong>Current word:</strong> <span></span>
@@ -83,17 +84,20 @@
     </tfoot>
   </table>
   <button id="highScore">Submit high score</button>
-  
+
   <div id="mocha"></div>
+  <script src="../../public/lib/jquery/dist/jquery.js"></script>
   <script src="../../public/lib/mocha/mocha.js"></script>
-  <script src="../../public/lib/expect/index.js"></script>
+  <script src="./expect.js"></script>
   <script src="../../public/lib/sinonjs/sinon.js"></script>
   <script>
     mocha.ui('bdd')
   </script>
-  <script type="text/javascript" src="../../public/js/main.js"></script>
-  <script type="text/javascript" src="../frontEnd.js"></script>
+  <script type="text/javascript" src="../../public/build/main.js"></script>
+  <script type="text/javascript" src="./phantom.js"></script>
   <script>
     mocha.run()
   </script>
 </body>
+
+</html>
