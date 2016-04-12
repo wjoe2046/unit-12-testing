@@ -127,15 +127,15 @@ class App extends Component {
     } else {
       infoDiv = <div>Turn: {turn}</div>;
     }
-
+    // TODO: the #clear button doesn't work yet.
     return (
       <div>
         {infoDiv}
         <div id="board">
           {rowElements}
         </div>
-        <button onClick={() => this.setState(getInitialState())}>Reset board</button>
-        <button onClick={() => {}}>Clear game history</button>
+        <button id="reset" onClick={() => this.setState(getInitialState())}>Reset board</button>
+        <button id="clear" onClick={() => {}}>Clear game history</button>
         <GameList gameList={gameList} />
       </div>
     );

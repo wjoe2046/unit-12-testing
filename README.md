@@ -31,7 +31,7 @@ This is a very verbose and unwieldy way of writing assertions. Assertion librari
 const result = add(1, 3);
 expect(result).toEqual(4, 'Adding 1 and 3 should equal 4');
 ```
-Assertion libraries also provide some added bonuses, such as reporting the expected outcome vs the actual outcome to Mocha in a predictable way so that Mocha can display the results in a clean, readable format.
+Assertion libraries also provide some added bonuses, such as reporting the expected outcome vs the actual outcome to Mocha in a predictable way so that Mocha can display the results in a clean, readable format. Examples include [Chai.expect](http://chaijs.com/api/bdd/), [Chai.assert](http://chaijs.com/api/assert/), and [expect](https://github.com/mjackson/expect)
 
 ### Unit Tests
 Unit tests attempt to *isolate* an individual function and ensure that that function does what it says it does. Functions are much easier to unit test when they have their *dependencies injected*, that is to say, when their dependencies are passed in as parameters. Unit tests are typically faster than integration tests since they are testing smaller chunks of code. If a function relies on another function in order to do its job, we typically will *mock out* the functions that are relied on. This allows us to test just the function we care about. There are many libraries which exist to making mocking easier, such as [Sinon.JS](http://sinonjs.org/docs/), [Nock](https://github.com/node-nock/nock),  [Jest](https://facebook.github.io/jest/), or [mockery](https://github.com/mfncooper/mockery).
@@ -56,6 +56,14 @@ Headless browsers are not created equal and each will come with trade-offs. For 
 Front-end frameworks such as React and Angular are a bit tricky to unit test because of their heavy coupling with the DOM. For instance, I can't just require in a single React Component and make sure renders 5 cats, because that Component expects to be rendered into the DOM and may rely on `props` and `state` in order to even render correctly. Luckily, these libraries provide their own testing utilities in order to make unit testing them possible.
 
 With React, Facebook provides us with [shallow rendering](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering). This allows us to simulate the rendering of a single component, passing in whatever props we desire and setting its state however we want. Then we can see what the resulting rendered html would look like and ensure that the right elements exist on the page. Libraries such as [skin-deep](https://github.com/glenjamin/skin-deep/tree/one-point-oh#readme) make shallow rendering easier to work with and allow us to shallow render multiple layers of nested components.
+
+### Test-driven Development
+Test-driven development, or TDD, is the process of writing tests for a feature BEFORE adding the actual feature. Advocators of TDD argue that developers who strictly follow TDD end up writing more modular, maintainable, and readable code. Here is the general process to follow:
+  1. Identify the feature to be added
+  2. Write a test that tests that the feature exists and works
+  3. Run your tests and ensure that your new test is failing (because the feature doesn't exist yet)
+  4. Write the code to implement your feature and pass the test
+  5. Repeat
 
 ## Setup
 - [ ] run `npm install`

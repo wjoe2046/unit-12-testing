@@ -20,22 +20,48 @@ describe('Front-end Integration/Features', () => {
     browser.visit(`http://localhost:${PORT}/`, done);
   });
 
-  it('loads successfully', () => {
-    browser.assert.success();
+  describe('Initial display', () => {
+    it('loads successfully', () => {
+      browser.assert.success();
+    });
+
+    it('displays a board', () => {
+      browser.assert.element('#board');
+    });
+
+    // TODO: Finish tests
+
+    xit('displays 3 rows', () => {
+    });
+
+    xit('displays 9 squares', () => {
+    });
   });
 
-  it('displays a board', () => {
-    browser.assert.element('#board');
+  describe('Game logic', () => {
+    xit('clicking on square places an X in square', () => {
+    });
+
+    xit('if X gets 3 in a row, victory message is displayed', () => {
+    });
+
+    xit('if O gets 3 in a row, victory message is displayed', () => {
+    });
   });
 
-  xit('displays 3 rows', () => {
-    // TODO
+  describe('Lists games from database', () => {
+    xit('all games from database are listed in #gameList div', () => {
+      // TODO: You'll need to require in and query the test DB in order to ensure
+      // that the right items show up.
+    });
   });
 
-  xit('displays 9 squares', () => {
-    // TODO: Assert that there are 9 divs with the class square inside the div with id board
-  });
+  describe('Buttons', () => {
+    xit('clicking the #reset button clears the game board and sets turn back to X', () => {
+    });
 
-  xit('clicking on square places an X in square', () => {
+    xit('clicking the #clear button removes all listed games', () => {
+      // TODO: You'll need to fix the button in src/components/App.js first!
+    });
   });
 });
