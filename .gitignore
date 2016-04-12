@@ -1,4 +1,3 @@
 npm-debug.log*
 node_modules
-public/lib
-public/build/main.js
+client/bundle.js
