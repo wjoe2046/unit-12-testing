@@ -5,7 +5,7 @@
   "scripts": {
     "start": "concurrently 'npm run watch:js' 'nodemon index.js'",
     "watch:js": "watchify src/index.js -o client/bundle.js -t babelify -dv",
-    "test": "mocha --timeout 8000 test/"
+    "test": "cross-env NODE_ENV=test && mocha --timeout 8000 test/"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/CodesmithLLC/testing-module#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "cross-env": "^1.0.7",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "isomorphic-fetch": "^2.2.1",

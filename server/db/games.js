@@ -14,7 +14,10 @@ if (process.env.NODE_ENV === 'test') {
 const db = {};
 
 db.create = game => {
-  const newGame = Object.assign(game, { createdAt: new Date().toISOString() });
+  const newGame = Object.assign(game, {
+    id: gamesList.length,
+    createdAt: new Date().toISOString(),
+  });
   gamesList.push(newGame);
   fs.writeFileSync(writeLocation, JSON.stringify(gamesList, null, 2));
   return gamesList.slice(-1)[0];
