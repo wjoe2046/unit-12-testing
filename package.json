@@ -4,8 +4,7 @@
   "description": "Codesmith testing module",
   "scripts": {
     "start": "node index.js",
-    "test": "cross-env NODE_ENV=test && mocha --timeout 8000 test/",
-    "test:extension": "mocha ./test/extension/index.js"
+    "test": "export NODE_ENV=test && mocha --timeout 8000 test/"
   },
   "repository": {
     "type": "git",
