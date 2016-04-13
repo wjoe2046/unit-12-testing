@@ -4,11 +4,8 @@
   "description": "Codesmith testing module",
   "scripts": {
     "start": "node index.js",
-    "watch:js": "watchify src/index.js -o client/bundle.js -t babelify -dv",
-    "build:scss": "node-sass scss/application.scss client/styles.css",
     "test": "cross-env NODE_ENV=test && mocha --timeout 8000 test/",
-    "test:extension": "./test/extension/runCompiled.sh ./test/extension/shallowRender.js ./test/extension/build.js",
-    "test:ext": "mocha ./test/extension/index.js"
+    "test:extension": "mocha ./test/extension/index.js"
   },
   "repository": {
     "type": "git",
