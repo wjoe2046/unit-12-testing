@@ -1,27 +1,29 @@
 const express = require('express');
-const harp = require('harp');
 const bodyparser = require('body-parser');
-const Boggle = require('solve-boggle');
+const db = require('./server/db/games');
 
 const app = express();
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
-app.use(express.static(`${__dirname}/public`));
-app.use(harp.mount(`${__dirname}/public`));
+app.use(express.static(`${__dirname}/client`));
 
 app.use(bodyparser.json());
 
-/**
-* Server responds to POST requests to /solve route by sending a JSON array of all of the
-* possible words for the provided boggle board
-*/
-app.post('/solve', (req, res) => {
-  if (!req.body.letters || req.body.letters.length !== 25) {
-    return res.status(400).send('invalid board');
-  }
+app.get('/', (req, res) => {
+  res.render('index');
+});
 
-  const board = new Boggle(req.body.letters);
+app.post('/games', (req, res) => {
+  if (!req.body.winner) res.status(500).json({ error: 'Must send winner.' });
+  const game = db.create({
+    winner: req.body.winner,
+  });
+  res.json(game);
+});
 
-  return board.solve(words => res.json(words));
+app.get('/games', (req, res) => {
+  res.json(db.find());
 });
 
 const port = process.env.PORT || 3000;
