@@ -106,10 +106,12 @@ Now we're ready to write some tests!
 - [ ] Complete the unit tests in `test/unit.js`
 - [ ] Complete the route integration tests in `test/supertest.js`
 - [ ] Complete the front-end Feature/Integration tests in `test/zombie.js`
-- [ ] Complete the front-end unit tests in `test/shallowRender.js`
 - [ ] Add an npm script that uses `eslint` to lint your code. An `.eslintrc` file configured with the airbnb style guide has been provided.
 - [ ] Modify the `npm test` script so that it **lints** your code in addition to running the other tests. If there are any lint errors, the test should be counted as a failure.
 - [ ] Fix any lint errors that the lint script found so that your tests pass again.
+
+## Extension Challenges
 - [ ] Add [blanket](https://www.npmjs.com/package/blanket), a code-coverage library, to your project
 - [ ] Following the [Mocha instructions](https://github.com/alex-seville/blanket/blob/master/docs/getting_started_node.md), modify your `npm test` script so that code coverage results are also provided
 - [ ] Configure blanket so that a code coverage result of under 70% is counted as a failure
+- [ ] Complete the front-end unit tests in `test/shallowRender.js`
