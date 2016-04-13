@@ -112,7 +112,7 @@ Now we're ready to write some tests!
 - [ ] Fix any lint errors that the lint script found so that your tests pass again.
 
 ## Extension Challenges
+- [ ] Complete the front-end unit tests in `test/shallowRender.js`
 - [ ] Add [blanket](https://www.npmjs.com/package/blanket), a code-coverage library, to your project
 - [ ] Following the [Mocha instructions](https://github.com/alex-seville/blanket/blob/master/docs/getting_started_node.md), modify your `npm test` script so that code coverage results are also provided
 - [ ] Configure blanket so that a code coverage result of under 70% is counted as a failure
-- [ ] Complete the front-end unit tests in `test/shallowRender.js`
