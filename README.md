@@ -1,12 +1,13 @@
 # Testing Module
 
 ## About
-In this module we'll be practicing writing tests for an existing codebase, and then adding new features and tests for those features. You'll be provided a codebase for a functioning Tic Tac Toe game and will work to write some tests for it.
+In this module we'll be practicing writing tests for an existing codebase, and then adding new features and tests for those features. The codebase you'll be working with is a React Tic Tac Toe game hooked up to an extremely simplified database implementation. This code base has a very lacking test suite. Pretend you're a new developer on this project and have been asked to add some features. Without tests in place, you might be a bit hesitant to make significant changes to the code because you're living in fear of **silently breaking an existing feature**. We will work to quash this fear by implementing some tests so that this code can be iterated upon with ease and confidence.
 
 The learning goals for this unit are as follows:
 - Gain familiarity with different testing tools such as Mocha, expect, Chai, Supertest, and more
 - Practice writing unit tests and integration tests
 - Learn two different ways of testing client-side code: Headless browsers and React shallow rendering
+- Gain an appreciation for why writing tests is **important**
 - Learn to identify when a function is testable or not, and learn to correct that problem
 
 ### Testing Framework
@@ -53,7 +54,7 @@ Headless browsers are not created equal and each will come with trade-offs. For 
 **Zombie.js**, which runs on top of a Node virtual DOM implementation called [jsdom](https://github.com/tmpvar/jsdom), runs your tests in Node and allows you to easily start your Node server during the tests. It has a rich api for interacting with and making assertions based on the elements within the page. A shortcoming of JSDOM and thus Zombie is that it cannot take screenshots of the page, and also does not mimic an actual browser as closely as PhantomJS.
 
 ### Unit Testing front-end code
-Front-end libraries and frameworks such as React and Angular are a bit tricky to unit test because of their heavy coupling with the DOM. For instance, I can't just require in a single React Component and make sure renders 5 cats, because that Component expects to be rendered into the DOM and may rely on `props` and `state` in order to even render correctly. Luckily, these libraries provide their own testing utilities in order to make unit testing them possible.
+Front-end libraries and frameworks such as React and Angular are a bit tricky to unit test because of their heavy coupling with the DOM. For instance, I can't just require in a single React Component and make sure it renders 5 cats, because that Component expects to be rendered into the DOM and may rely on `props` and `state` in order to even render correctly. Luckily, these libraries provide their own testing utilities in order to make unit testing them possible.
 
 With React, Facebook provides us with [shallow rendering](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering). This allows us to simulate the rendering of a single component, passing in whatever props we desire and setting its state however we want. Then we can see what the resulting rendered html would look like and ensure that the right elements exist on the page. Libraries such as [skin-deep](https://github.com/glenjamin/skin-deep/tree/one-point-oh#readme) make shallow rendering easier to work with and allow us to shallow render multiple layers of nested components.
 
