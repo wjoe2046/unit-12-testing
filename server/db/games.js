@@ -49,4 +49,8 @@ db.drop = () => {
   return true;
 };
 
+db.reset = () => {
+  gamesList = JSON.parse(fs.readFileSync(writeLocation));
+};
+
 module.exports = db;

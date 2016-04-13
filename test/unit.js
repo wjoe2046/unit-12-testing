@@ -15,13 +15,10 @@ describe('db unit tests', () => {
   // the "done" callback has been called. Here, I'm passing "done" directly to the
   // fs.writeFile function which will call done as soon as the file has been written.
   // This way, the tests won't start until the "database" file has been reset to an empty Array!
-  before(done => {
+  before(() => {
     // Make sure "db" is empty
-    fs.writeFile(
-      testJsonFile,
-      JSON.stringify([], null, 2),
-      done
-    );
+    fs.writeFileSync(testJsonFile, JSON.stringify([], null, 2));
+    db.reset();
   });
 
   // In Mocha we use the "describe" function to seperate our tests into sections.
@@ -33,7 +30,7 @@ describe('db unit tests', () => {
     it('valid game is written to json file', () => {
       const game = { winner: 'X' };
       db.create(game);
-      const gameList = JSON.parse(require(testJsonFile));
+      const gameList = JSON.parse(fs.readFileSync(testJsonFile));
       expect(gameList.length).toEqual(1);
       expect(gameList[0].winner).toEqual('X');
     });
