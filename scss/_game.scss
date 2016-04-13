@@ -1,15 +1,20 @@
 body {
-  background: #ACCEEC; }
+  background: $lightBlue;
+}
 
 #board {
   width: 390px;
   height: 390px;
+  // border: 5px solid $lightOrange;
+  // background-color: $darkBlue;
   margin: 20px auto;
-  padding: 0; }
+  padding: 0;
+}
 
 .square {
   box-sizing: border-box;
   float: left;
+  // display: inline-block;
   font-size: 0;
   line-height: 0;
   width: 120px;
@@ -22,6 +27,10 @@ body {
   font-weight: 550;
   line-height: 100px;
   text-align: center;
-  cursor: pointer; }
-  .square:hover {
-    background-color: #d9d9d9; }
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken(white, 15);
+  }
+
+}

@@ -52,8 +52,8 @@ Headless browsers are not created equal and each will come with trade-offs. For 
 
 **Zombie.js**, which runs on top of a Node virtual DOM implementation called [jsdom](https://github.com/tmpvar/jsdom), runs your tests in Node and allows you to easily start your Node server during the tests. It has a rich api for interacting with and making assertions based on the elements within the page. A shortcoming of JSDOM and thus Zombie is that it cannot take screenshots of the page, and also does not mimic an actual browser as closely as PhantomJS.
 
-### Unit Testing front end code
-Front-end frameworks such as React and Angular are a bit tricky to unit test because of their heavy coupling with the DOM. For instance, I can't just require in a single React Component and make sure renders 5 cats, because that Component expects to be rendered into the DOM and may rely on `props` and `state` in order to even render correctly. Luckily, these libraries provide their own testing utilities in order to make unit testing them possible.
+### Unit Testing front-end code
+Front-end libraries and frameworks such as React and Angular are a bit tricky to unit test because of their heavy coupling with the DOM. For instance, I can't just require in a single React Component and make sure renders 5 cats, because that Component expects to be rendered into the DOM and may rely on `props` and `state` in order to even render correctly. Luckily, these libraries provide their own testing utilities in order to make unit testing them possible.
 
 With React, Facebook provides us with [shallow rendering](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering). This allows us to simulate the rendering of a single component, passing in whatever props we desire and setting its state however we want. Then we can see what the resulting rendered html would look like and ensure that the right elements exist on the page. Libraries such as [skin-deep](https://github.com/glenjamin/skin-deep/tree/one-point-oh#readme) make shallow rendering easier to work with and allow us to shallow render multiple layers of nested components.
 
@@ -67,10 +67,31 @@ Test-driven development, or TDD, is the process of writing tests for a feature B
 
 ## Setup
 - [ ] run `npm install`
-- [ ] `npm start` to start your server on port 3000 and test it out
+- [ ] `npm start` to start your server on port 3000
 - [ ] `npm test` to run your test suite
 
-## Getting Started
+## Build tools challenge
+You may have noticed by now that although your server is starting up on port 3000, the React app isn't quite working... This is because we haven't provided you with any working **build tools** for this project. That's right, you'll need to setup the build tools for this project yourself before you can even start. Using the build tool of your choice, write tasks to complete the following challenges:
+
+The React application at `src/index.js` needs to be **browserifed** into the file `client/bundle.js`
+
+- [ ] Browserify must use the `babelify` transform with the following presets:
+  - `es2015`: allows transformation of ES6 code to ES5 so that all modern browsers can run the code
+  - `react`: allows transformation of **jsx** syntax to normal JavaScript so that browsers can understand it
+- [ ] Write a task that performs a one-time build of the bundle
+- [ ] Write a task that uses `watchify` to watch the `src/index.js` file for changes and rebuild as necessary
+- [ ] Extension - Modify your build task so that it **minifies** that built JavaScript
+- [ ] Extension - Modify your build task so that it includes **source maps** with the minified code
+
+The styles are written in [SCSS](http://sass-lang.com/guide), a pre-processed CSS extension that gives powerful features to CSS. They'll need to be compiled to CSS before the styles will work.
+
+- [ ] Write a task that runs a one-time compile of the `scss/application.scss` file into `client/styles.css`
+- [ ] Write a task that watches `scss/application.scss` for changes and recompiles to `client/styles.css` whenever the styles are changed
+- [ ] Extension - Modify your build task so that it **minifies** the built CSS
+- [ ] Extension - Modify your build task so that it includes **source maps** with the minified CSS
+
+## Getting Started - testing
+Now we're ready to write some tests!
 - [ ] Take a look around and familiarize yourself with the codebase.
   - There's a React app in `src/` and an express server in `index.js`
   - Since the focus of this unit is on testing and not databases, a simplified json "database" is implemented for you in `server/db/`
@@ -78,17 +99,17 @@ Test-driven development, or TDD, is the process of writing tests for a feature B
   - How does the React app get and display the list of games from the server?
   - How does the React app manage game state and game logic?
   - Read over the functions in `server/db/games.js` to understand how our simplified DB works
+- [ ] Ensure your build steps work by running `npm start` and navigating your browser to `http://localhost:3000`
+- [ ] Check the Chrome dev console and make sure it is free of errors before continuing
 
 ## Challenges
-- [ ] Complete the route Integration tests in `test/supertest.js`
+- [ ] Complete the unit tests in `test/unit.js`
+- [ ] Complete the route integration tests in `test/supertest.js`
 - [ ] Complete the front-end Feature/Integration tests in `test/zombie.js`
-- [ ] Complete 3 of the front-end unit tests in `test/compiled/phantom.js`
-- [ ] Write a front-end test that clicks on the `#solve` button and makes sure that the solution JSON is displayed on the DOM.
-  - Have your test mock the server using `sinon` so that it's not testing the actual server route, but rather the front-end code for updating the DOM.
-  - You will need to complete the functionality in the `addSolutionToDom` function in `public/js/main.js`
+- [ ] Complete the front-end unit tests in `test/shallowRender.js`
 - [ ] Add an npm script that uses `eslint` to lint your code. An `.eslintrc` file configured with the airbnb style guide has been provided.
-- [ ] Add a code coverage library and figure out what our code coverage percentage is. Probably not very high...
-
-
-### Part 1 - Setup
-- [ ] This project requires some build tools setup in order to run. Figure out what needs to be done to build the project.
+- [ ] Modify the `npm test` script so that it **lints** your code in addition to running the other tests. If there are any lint errors, the test should be counted as a failure.
+- [ ] Fix any lint errors that the lint script found so that your tests pass again.
+- [ ] Add [blanket](https://www.npmjs.com/package/blanket), a code-coverage library, to your project
+- [ ] Following the [Mocha instructions](https://github.com/alex-seville/blanket/blob/master/docs/getting_started_node.md), modify your `npm test` script so that code coverage results are also provided
+- [ ] Configure blanket so that a code coverage result of under 70% is counted as a failure
