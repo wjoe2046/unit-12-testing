@@ -4,6 +4,7 @@
   "description": "Codesmith testing module",
   "scripts": {
     "start": "node index.js",
+    "build": "./node_modules/.bin/webpack -w",
     "test": "export NODE_ENV=test && mocha --timeout 8000 test/"
   },
   "repository": {
