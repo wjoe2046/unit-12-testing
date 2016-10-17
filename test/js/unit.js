@@ -1,8 +1,8 @@
 // Here we will be unit testing the 3 database functions from server/db/games.js
-const db = require('../server/db/games.js');
+const db = require('../../server/db/games.js');
 const fs = require('fs');
 const path = require('path');
-const testJsonFile = path.join(__dirname, '../server/db/games.test.json');
+const testJsonFile = path.join(__dirname, '../../server/db/games.test.json');
 const expect = require('expect');
 
 describe('db unit tests', () => {

@@ -9,7 +9,7 @@ const Browser = require('zombie');
 const PORT = process.env.PORT || 3000;
 
 // Start the server
-require('../');
+require('../../');
 
 // Regex which matches strings that are a single capital letter A-Z or Qu
 describe('Front-end Integration/Features', () => {

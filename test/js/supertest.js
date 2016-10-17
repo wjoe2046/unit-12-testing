@@ -1,6 +1,6 @@
 const request = require('supertest');
 // Start server
-const app = require('../');
+const app = require('../../');
 
 const PORT = process.env.PORT || 3000;
 const HOST = `http://localhost:${PORT}`;
