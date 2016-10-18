@@ -54,9 +54,9 @@ Headless browsers are not created equal and each will come with trade-offs. For 
 **Zombie.js**, which runs on top of a Node virtual DOM implementation called [jsdom](https://github.com/tmpvar/jsdom), runs your tests in Node and allows you to easily start your Node server during the tests. It has a rich api for interacting with and making assertions based on the elements within the page. A shortcoming of JSDOM and thus Zombie is that it cannot take screenshots of the page, and also does not mimic an actual browser as closely as PhantomJS.
 
 ### Unit Testing front-end code
-Front-end libraries and frameworks such as React and Angular are a bit tricky to unit test because of their heavy coupling with the DOM. For instance, I can't just require in a single React Component and make sure it renders 5 cats, because that Component expects to be rendered into the DOM and may rely on `props` and `state` in order to even render correctly. Luckily, these libraries provide their own testing utilities in order to make unit testing them possible.
+Front-end libraries and frameworks such as React and Angular are a bit tricky to unit test because of their heavy coupling with the DOM. For instance, I can't just require in a single React Component and make sure it renders 5 cats, because that Component expects to be rendered into the DOM and may rely on `props` and `state` in order to even render correctly. Luckily, these libraries have options of testing utilities that make unit testing them possible.
 
-With React, Facebook provides us with [shallow rendering](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering). This allows us to simulate the rendering of a single component, passing in whatever props we desire and setting its state however we want. Then we can see what the resulting rendered html would look like and ensure that the right elements exist on the page. Libraries such as [skin-deep](https://github.com/glenjamin/skin-deep/tree/one-point-oh#readme) make shallow rendering easier to work with and allow us to shallow render multiple layers of nested components.
+With React, a very helpful tool is [shallow rendering](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering). This allows us to simulate the rendering of a single component, passing in whatever props we desire and setting its state however we want. Then we can see what the resulting rendered html would look like and ensure that the right elements exist on the page. Libraries such as [enzyme](http://airbnb.io/enzyme/) make shallow rendering easier to work with and allow us to shallow render multiple layers of nested components.
 
 ### Test-driven Development
 Test-driven development, or TDD, is the process of writing tests for a feature BEFORE adding the actual feature. Advocators of TDD argue that developers who strictly follow TDD end up writing more modular, maintainable, and readable code. Here is the general process to follow:
@@ -70,8 +70,7 @@ Test-driven development, or TDD, is the process of writing tests for a feature B
 - [ ]  run `npm install` to install dependencies
 - [ ]  run `npm test` to run your test suite
 - [ ] `npm start` to start your server on port 3000
-- [ ]  in another terminal window run `npm run build` to bundle your modules*
-    *__Note: if you have webpack globally installed you can optionally run `webpack -w` instead.__
+- [ ]  in another terminal window run `npm run build` to bundle your modules (Note: if you have webpack globally installed you can optionally run `webpack -w` instead.)
 
 ## Getting Started - testing
 Now we're ready to write some tests!
@@ -86,10 +85,10 @@ Now we're ready to write some tests!
 - [ ] Check the Chrome dev console and make sure it is free of errors before continuing
 
 ## Challenges
-- [ ] Complete the unit tests in `test/unit.js`
-- [ ] Complete the route integration tests in `test/supertest.js`
-- [ ] Complete the front-end Feature/Integration tests in `test/zombie.js`
-- [ ] Complete the front-end unit tests in `test/shallowRender.js`
+- [ ] Complete the unit tests in `test/js/unit.js`
+- [ ] Complete the route integration tests in `test/js/supertest.js`
+- [ ] Complete the front-end Feature/Integration tests in `test/js/zombie.js`
+- [ ] Complete the front-end unit tests in `test/js/enzyme.js`
 
 Your client has complained that saving items to the database is taking too long when multiple requests hit the server at the same time. This is because our naive database implementation is using `readFileSync` and `writeFileSync`, which block the main execution thread of JavaScript while they are running. This is a horrible idea for a server that needs to serve multiple users at the same time! For the next section, we're going to refactor all of our database functions to use the async versions of the fs functions: `readFile` and `writeFile`.
 
@@ -101,6 +100,7 @@ Your client has complained that saving items to the database is taking too long 
 - [ ] As you refactor, run your unit tests often in order to verify that your refactored code works. By the end, all tests should be green again!
 
 ## Extension Challenges
+- [ ] It would've been really useful to have tests in place for your weekly assessments. Choose a previous assessment to get experience in setting up tests from scratch. Your tests should ensure that the specs outlined in the assessment readme are being adhered to.
 - [ ] Add an npm script that uses `eslint` to lint your code. An `.eslintrc` file configured with the airbnb style guide has been provided.
 - [ ] Modify the `npm test` script so that it **lints** your code in addition to running the other tests. If there are any lint errors, the test should be counted as a failure.
 - [ ] Fix any lint errors that the lint script found so that your tests pass again.
