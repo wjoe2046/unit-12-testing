@@ -1,7 +1,7 @@
-# Testing Module
+# Testing
 
 ## About
-In this module we'll be practicing writing tests for an existing codebase, and then adding new features and tests for those features. The codebase you'll be working with is a React Tic Tac Toe game hooked up to an extremely simplified database implementation. This code base has a very lacking test suite. Pretend you're a new developer on this project and have been asked to add some features. Without tests in place, you might be a bit hesitant to make significant changes to the code because you're living in fear of **silently breaking an existing feature**. We will work to quash this fear by implementing some tests so that this code can be iterated upon with ease and confidence.
+In this unit we'll be practicing writing tests for an existing codebase, and then adding new features and tests for those features. The codebase you'll be working with is a React Tic Tac Toe game hooked up to an extremely simplified database implementation. This code base has a very lacking test suite. Pretend you're a new developer on this project and have been asked to add some features. Without tests in place, you might be a bit hesitant to make significant changes to the code because you're living in fear of **silently breaking an existing feature**. We will work to quash this fear by implementing some tests so that this code can be iterated upon with ease and confidence.
 
 The learning goals for this unit are as follows:
 - Gain familiarity with different testing tools such as Mocha, expect, Chai, Supertest, and more
