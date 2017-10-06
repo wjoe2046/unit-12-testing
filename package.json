@@ -6,7 +6,6 @@
     "start": "node index.js",
     "build": "./node_modules/.bin/webpack -w",
     "test": "export NODE_ENV=test && mocha --timeout 8000 test/",
-    "nebulis": "node ./node_modules/nebulis-endpoint/index.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +23,6 @@
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "isomorphic-fetch": "^2.2.1",
-    "nebulis-endpoint": "^0.4.2",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "webpack": "^1.13.1"
