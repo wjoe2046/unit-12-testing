@@ -69,7 +69,6 @@ Test-driven development, or TDD, is the process of writing tests for a feature B
 ## Setup
 - [ ]  run `npm install` to install dependencies
 - [ ]  run `npm test` to run your test suite
-- [ ]  in another terminal window run `npm run nebulis` to start our coding monitor
 - [ ] `npm start` to start your server on port 3000
 - [ ]  in another terminal window run `npm run build` to bundle your modules (Note: if you have webpack globally installed you can optionally run `webpack -w` instead.)
 
