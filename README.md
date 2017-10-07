@@ -53,6 +53,8 @@ Headless browsers are not created equal and each will come with trade-offs. For 
 
 **Zombie.js**, which runs on top of a Node virtual DOM implementation called [jsdom](https://github.com/tmpvar/jsdom), runs your tests in Node and allows you to easily start your Node server during the tests. It has a rich api for interacting with and making assertions based on the elements within the page. A shortcoming of JSDOM and thus Zombie is that it cannot take screenshots of the page, and also does not mimic an actual browser as closely as PhantomJS.
 
+**NOTE** Additional documentation for Zombie's browser module API can be found [here](https://zombie.readthedocs.io/en/latest/pythonzombie.html#module-zombie.browser), which includes info about lots of useful methods not on their main page!
+
 ### Unit Testing front-end code
 Front-end libraries and frameworks such as React and Angular are a bit tricky to unit test because of their heavy coupling with the DOM. For instance, I can't just require in a single React Component and make sure it renders 5 cats, because that Component expects to be rendered into the DOM and may rely on `props` and `state` in order to even render correctly. Luckily, these libraries have options of testing utilities that make unit testing them possible.
 
