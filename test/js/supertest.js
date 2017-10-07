@@ -47,7 +47,7 @@ describe('Route integration', () => {
       });
 
       xit('responds to invalid request with 400 status and error message in body', done => {
-        // This feature does not exist yet. Follow test-driven-development here! See description
+        // This feature is not fully implemented yet. Follow test-driven-development here! See description
         // in readme.
         // Hint: An invalid request is a POST request in which the POST body does not contain
         // a JSON object with a "winner" key, or if the body contains fields other than "winner"
