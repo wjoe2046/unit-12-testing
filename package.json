@@ -4,8 +4,9 @@
   "description": "Codesmith testing unit",
   "scripts": {
     "start": "node index.js",
-    "build": "./node_modules/.bin/webpack -w",
-    "test": "export NODE_ENV=test && mocha --timeout 8000 test/"
+    "build": "webpack -w",
+    "test": "export NODE_ENV=test && mocha --timeout 8000 test/",
+    "jest": "jest"
   },
   "repository": {
     "type": "git",
@@ -28,27 +29,28 @@
     "react-dom": "^16.5.2"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-register": "^6.26.0",
-    "chai": "^4.2.0",
     "concurrently": "^4.0.1",
     "css-loader": "^1.0.0",
-    "enzyme": "^3.6.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
     "eslint": "^5.6.1",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "expect": "^23.6.0",
-    "mocha": "^5.2.0",
+    "jest": "^23.6.0",
     "node-sass": "^4.9.3",
     "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^16.5.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
     "supertest": "^3.3.0",
     "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
     "zombie": "^6.1.3"
   }
 }
