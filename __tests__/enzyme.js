@@ -1,15 +1,17 @@
-const expect = require('expect');
-const React = require('react');
-import Square from '../../src/components/Square';
-import { shallow } from 'enzyme';
+import React from 'react';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 // Enzyme is a wrapper around React test utilities which makes it easier to
 // shallow render and traverse the shallow rendered tree.
+import Square from '../src/components/Square';
+
+configure({ adapter: new Adapter() });
 
 describe('React unit tests', () => {
   describe('<Square />', () => {
     let wrapper;
 
-    before(() => {
+    beforeAll(() => {
       wrapper = shallow(<Square row={0} square={1} letter="X" handleClick={() => {}} />);
     });
 

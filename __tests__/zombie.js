@@ -1,22 +1,15 @@
 const Browser = require('zombie');
 
-// Include one of the following assertion libraries if you need to make assertions
-// that Zombie does not provide out of the box.
-// const expect = require('expect');
-// const expect = require('chai').expect;
-// const assert = require('chai').assert;
+// Keep in mind that Jest makes the expect assertion library available globally.
 
 const PORT = process.env.PORT || 3000;
-
-// Start the server
-require('../../');
 
 // Regex which matches strings that are a single capital letter A-Z or Qu
 describe('Front-end Integration/Features', () => {
   const browser = new Browser();
   browser.silent = true;
 
-  before(done => {
+  beforeAll((done) => {
     browser.visit(`http://localhost:${PORT}/`, done);
   });
 

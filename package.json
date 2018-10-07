@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node index.js",
     "build": "webpack -w",
-    "test": "export NODE_ENV=test && mocha --timeout 8000 test/",
-    "jest": "jest"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -32,6 +31,8 @@
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "concurrently": "^4.0.1",
     "css-loader": "^1.0.0",

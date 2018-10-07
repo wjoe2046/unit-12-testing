@@ -2,10 +2,11 @@
   "extends": "airbnb",
   "root": true,
   "env": {
+    "browser": true,
     "node": true,
-    "mocha": true
+    "jest": true
   },
-  "globals": {
-    "__dirname": true
-  }
+  "rules": {
+    "react/jsx-filename-extension": "off",
+  },
 }

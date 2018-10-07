@@ -1,9 +1,9 @@
 // Here we will be unit testing the 3 database functions from server/db/games.js
-const db = require('../../server/db/games.js');
 const fs = require('fs');
 const path = require('path');
-const testJsonFile = path.join(__dirname, '../../server/db/games.test.json');
-const expect = require('expect');
+const db = require('../server/db/games.js');
+
+const testJsonFile = path.join(__dirname, '../server/db/games.test.json');
 
 describe('db unit tests', () => {
   // Mocha runs the "before" function once, before any tests are executed.
@@ -15,7 +15,7 @@ describe('db unit tests', () => {
   // the "done" callback has been called. Here, I'm passing "done" directly to the
   // fs.writeFile function which will call done as soon as the file has been written.
   // This way, the tests won't start until the "database" file has been reset to an empty Array!
-  before(() => {
+  beforeAll(() => {
     // Make sure "db" is empty
     fs.writeFileSync(testJsonFile, JSON.stringify([], null, 2));
     db.reset();
@@ -64,7 +64,7 @@ describe('db unit tests', () => {
     xit('returns list of all games from the json file', () => {
     });
 
-    xit('works of the list of games is empty', () => {
+    xit('works if the list of games is empty', () => {
     });
   });
 
