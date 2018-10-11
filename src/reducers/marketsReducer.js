@@ -19,26 +19,20 @@ const initialState = {
   newLocation: '',
 };
 
-const marketsReducer = (state=initialState, action) => {
+const marketsReducer = (state = initialState, action) => {
   let marketList;
 
-  switch(action.type) {
+  switch (action.type) {
     case types.ADD_MARKET: {
-      // increment lastMarketId and totalMarkets counters
       let { lastMarketId, totalMarkets } = state;
       lastMarketId += 1;
       totalMarkets += 1;
 
-      // create the new market object from provided data
-      const newMarket = {
+      marketList = state.marketList.concat({
         marketId: lastMarketId,
         location: state.newLocation,
         cards: 0,
-      };
-
-      // push the new market onto a copy of the market list
-      marketList = state.marketList.slice();
-      marketList.push(newMarket);
+      });
 
       // return updated state
       return {
@@ -50,39 +44,49 @@ const marketsReducer = (state=initialState, action) => {
       };
     }
 
-    case types.NEW_LOCATION:
+    case types.UPDATE_LOCATION:
       return {
         ...state,
         newLocation: action.payload,
       };
 
     case types.ADD_CARD: {
-      const newMarketList = state.marketList.slice();
-      newMarketList.forEach((market) => {
+      const newMarketList = state.marketList.map((market) => {
         if (market.marketId === action.payload) {
-          market.cards += 1;
+          const newMarket = {
+            ...market,
+            cards: market.cards + 1,
+          };
+          return newMarket;
         }
+        return market;
       });
+
       return {
         ...state,
         totalCards: state.totalCards + 1,
         marketList: newMarketList,
-      }
+      };
     }
 
     case types.DELETE_CARD: {
-      const newMarketList = state.marketList.slice();
-      for (let i = 0; i < newMarketList.length; i += 1) {
-        if (newMarketList[i].marketId === action.payload) {
-          if (newMarketList[i].cards === 0) return state;
-          newMarketList[i].cards -= 1;
+      let change = 0;
+      const newMarketList = state.marketList.map((market) => {
+        if (market.marketId === action.payload && market.cards > 0) {
+          change = -1;
+          return {
+            ...market,
+            cards: market.cards - 1,
+          };
         }
-      }
+        return market;
+      });
+
       return {
         ...state,
-        totalCards: state.totalCards - 1,
+        totalCards: state.totalCards + change,
         marketList: newMarketList,
-      }
+      };
     }
 
     default:

@@ -10,37 +10,28 @@
  */
 
 import React from 'react';
-import MarketDisplay from './MarketDisplay.jsx';
+import MarketDisplay from './MarketDisplay';
 
+const percentOfTotal = (cardCount, total) => (
+  cardCount ? ((cardCount / total) * 100).toFixed(2) : 0);
 
-const MarketsDisplay = (props) => {
-  const percentOfTotal = (cardCount) => {
-    if (cardCount === 0) return 0
-    return ((cardCount / props.totalCards) * 100).toFixed(2);
-  }
+const marketMaker = (market, props) => (
+  <MarketDisplay
+    {...market}
+    key={market.marketId}
+    percentage={percentOfTotal(market.cards, props.totalCards)}
+    addCard={props.addCard}
+    deleteCard={props.deleteCard}
+  />
+);
 
-  const marketMaker = (market) => {
-    return (
-      <MarketDisplay
-        marketId={market.marketId}
-        location={market.location}
-        cards={market.cards}
-        key={market.marketId}
-        percentage={percentOfTotal(market.cards)}
-        addCard={props.addCard}
-        deleteCard={props.deleteCard}
-      />
-    )
-  }
-
-  return(
-    <div className="displayBox">
-      <h4>Markets</h4>
-      <div>
-        {props.marketList.map((market) => marketMaker(market))}
-      </div>
+const MarketsDisplay = props => (
+  <div className="displayBox">
+    <h4>Markets</h4>
+    <div>
+      {props.marketList.map(market => marketMaker(market, props))}
     </div>
-  );
-};
+  </div>
+);
 
 export default MarketsDisplay;

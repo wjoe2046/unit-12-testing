@@ -9,39 +9,24 @@
  * ************************************
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import TotalsDisplay from '../components/TotalsDisplay.jsx';
-import MarketsContainer from '../containers/MarketsContainer.jsx';
-import * as actions from '../actions/actions'
+import TotalsDisplay from '../components/TotalsDisplay';
+import MarketsContainer from './MarketsContainer';
 
-const mapStateToProps = store => store
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch),
+const mapStateToProps = ({ markets: { totalCards, totalMarkets } }) => ({
+  totalCards,
+  totalMarkets,
 });
 
-class MainContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
+const MainContainer = ({ totalCards, totalMarkets }) => (
+  <div className="container">
+    <div className="outerBox">
+      <h1 id="header">MegaMarket Loyalty Cards</h1>
+      <TotalsDisplay totalCards={totalCards} totalMarkets={totalMarkets} />
+      <MarketsContainer />
+    </div>
+  </div>
+);
 
-  render() {
-    const { markets } = this.props;
-    return (
-      <div className="container">
-        <div className="outerBox">
-          <h1 id="header">MegaMarket Loyalty Cards</h1>
-          <TotalsDisplay
-            totalCards={markets.totalCards}
-            totalMarkets={markets.totalMarkets}
-          />
-          <MarketsContainer />
-        </div>
-      </div>
-    );
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+export default connect(mapStateToProps)(MainContainer);

@@ -4,48 +4,42 @@
  * @module  MarketsContainer
  * @author
  * @date
- * @description stateful component that renders MarketCreator and MarketDisplay
+ * @description component that renders MarketCreator and MarketDisplay
  *
  * ************************************
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import actions from action creators file
 import * as actions from '../actions/actions';
-// import child components...
-import MarketCreator from '../components/MarketCreator.jsx';
-import MarketsDisplay from '../components/MarketsDisplay.jsx';
+import MarketCreator from '../components/MarketCreator';
+import MarketsDisplay from '../components/MarketsDisplay';
 
-const mapStateToProps = store => store
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch),
+const mapStateToProps = ({ markets }) => ({
+  newLocation: markets.newLocation,
+  totalCards: markets.totalCards,
+  marketList: markets.marketList,
 });
 
-class MarketsContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(actions, dispatch),
+});
 
-  render() {
-    return(
-      <div className="innerbox">
-        <MarketCreator
-          newLocation={this.props.markets.newLocation}
-          updateLocation={this.props.actions.newLocation}
-          addMarket={this.props.actions.addMarket}
-        />
-        <MarketsDisplay
-          totalCards={this.props.markets.totalCards}
-          marketList={this.props.markets.marketList}
-          addCard={this.props.actions.addCard}
-          deleteCard={this.props.actions.deleteCard}
-        />
-      </div>
-    );
-  }
-}
+const MarketsContainer = props => (
+  <div className="innerbox">
+    <MarketCreator
+      newLocation={props.newLocation}
+      updateLocation={props.updateLocation}
+      addMarket={props.addMarket}
+    />
+    <MarketsDisplay
+      totalCards={props.totalCards}
+      marketList={props.marketList}
+      addCard={props.addCard}
+      deleteCard={props.deleteCard}
+    />
+  </div>
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MarketsContainer);

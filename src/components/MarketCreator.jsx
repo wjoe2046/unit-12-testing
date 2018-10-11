@@ -11,12 +11,17 @@
 
 import React from 'react';
 
-const MarketCreator = props => (
-  // how do we create the circuit between the store and an input field?
-  // how do we update the store from a presentation component?
+const MarketCreator = ({
+  newLocation,
+  updateLocation,
+  addMarket,
+}) => (
   <div>
-    <input value={props.newLocation} onChange={(event) => props.updateLocation(event.target.value)} />
-    <button onClick={props.addMarket} >Add Market</button>
+    <input
+      value={newLocation}
+      onChange={event => updateLocation(event.target.value)}
+    />
+    <button type="button" onClick={addMarket}>Add Market</button>
   </div>
 );
 
