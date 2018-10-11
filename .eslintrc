@@ -7,6 +7,9 @@
     "jest": true
   },
   "rules": {
+    "react/button-has-type": "off",
+    "react/destructuring-assignment": "off",
     "react/jsx-filename-extension": "off",
+    "react/prop-types": "off",
   },
 }

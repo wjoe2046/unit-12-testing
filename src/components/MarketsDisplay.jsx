@@ -28,7 +28,7 @@ const marketMaker = (market, props) => (
 const MarketsDisplay = props => (
   <div className="displayBox">
     <h4>Markets</h4>
-    <div>
+    <div className="allMarkets">
       {props.marketList.map(market => marketMaker(market, props))}
     </div>
   </div>
