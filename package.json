@@ -25,7 +25,9 @@
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -49,6 +51,7 @@
     "puppeteer": "^1.9.0",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.5.2",
+    "redux-devtools-extension": "^2.13.5",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
     "supertest": "^3.3.0",
