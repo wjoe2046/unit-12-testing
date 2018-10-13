@@ -1,75 +1,106 @@
-// Here we will be unit testing the 3 database functions from server/db/games.js
+// Here we will be unit testing the 3 main database functions from server/db/markets.js
 const fs = require('fs');
 const path = require('path');
-const db = require('../server/db/games.js');
+const db = require('../server/db/markets.js');
 
-const testJsonFile = path.join(__dirname, '../server/db/games.test.json');
+const testJsonFile = path.resolve(__dirname, '../server/db/markets.test.json');
 
 describe('db unit tests', () => {
-  // Mocha runs the "before" function once, before any tests are executed.
-  // If you need to perform an asynchronous operation during a Mocha function, then
-  // you have two options. One is to return a promise and Mocha will honor that promise,
-  // not continuing to the next step until the Promise is resolved. The second way is
-  // to provide a callback function named "done" (the approach I'm using below).
-  // If you provide the callback, then Mocha will not move on to the next step until
-  // the "done" callback has been called. Here, I'm passing "done" directly to the
-  // fs.writeFile function which will call done as soon as the file has been written.
-  // This way, the tests won't start until the "database" file has been reset to an empty Array!
-  beforeAll(() => {
+  /**
+   * Jest runs the "beforeAll" function once, before any tests are executed. If
+   * you need to perform an asynchronous operation during a Jest function, then
+   * you have two options. One is to return a promise, and Jest will wait until
+   * that promise resolves before moving on.
+   *
+   * The second way is to provide a callback function named "done" (like
+   * below). If you provide the callback, then Jest will wait until the "done"
+   * callback has been called. Here, we invoke "done" in fs.writeFile's
+   * callback function, after writing to the file and then resetting our
+   * database model. This way, the tests won't start until the "database" has
+   * been reset to an empty Array!
+   */
+  beforeAll((done) => {
     // Make sure "db" is empty
-    fs.writeFileSync(testJsonFile, JSON.stringify([], null, 2));
-    db.reset();
+    fs.writeFile(testJsonFile, JSON.stringify([], null, 2), () => {
+      db.reset();
+      done();
+    });
   });
 
-  // In Mocha we use the "describe" function to seperate our tests into sections.
-  // The main purpose here is to make the console output easier to read. Each test
-  // inside of a describe block will have its output indented inside of its description.
-  // You can also place "before", "beforeEach", "after", and "afterEach" functions
-  // inside of "describe" blocks and they will only run for tests inside the describe block.
+  /**
+   * Like many testing frameworks, in Jest we use the "describe" function to
+   * separate our tests into sections. The main purpose here is to make the
+   * console output easier to read. Each test inside of a describe block will
+   * have its output indented inside of its description.
+   *
+   * You can place "beforeAll", "beforeEach", "afterAll", and "afterEach"
+   * functions inside of "describe" blocks and they will only run for tests
+   * inside that describe block. You can even nest describes within describes!
+   */
   describe('#create', () => {
-    it('valid game is written to json file', () => {
-      const game = { winner: 'X' };
-      db.create(game);
-      const gameList = JSON.parse(fs.readFileSync(testJsonFile));
-      expect(gameList.length).toEqual(1);
-      expect(gameList[0].winner).toEqual('X');
+    it('should write a valid market to the JSON file', () => {
+      const market = { id: 0, cards: 0, location: 'here' };
+      db.create(market);
+      const marketList = JSON.parse(fs.readFileSync(testJsonFile));
+      expect(marketList.length).toEqual(1);
+      expect(marketList[0].location).toEqual('here');
     });
 
     // TODO: Finish unit testing the create function
 
-    xit('game has unique ID field added', () => {
+    xit('should create a second market without overwriting the first', () => {
     });
 
-    xit('adding a second game does not overwrite first game', () => {
+    xit('should return an error when location field is not provided', () => {
+      /**
+       *  TODO: Practice test-driven development here. Currently the create
+       *  function does not return an error if the location field is not
+       *  provided. Follow the TDD approach:
+       *    1. Write a test that tests that an error is returned if the
+       *    "location" field is not provided
+       *    2. Run the tests and make sure your new test fails (since this
+       *    feature doesn't exist yet)
+       *    3. Add the functionality to #create function in server/db/markets.js
+       *    to make your test pass
+       */
     });
 
-    xit('if winner field is not provided, game is not added and an error is returned', () => {
-      // TODO: Practice test-driven development here. Currently the create function does
-      // not return an error if the winner field is not provided. Follow the TDD approach:
-      //   1. Write a test that tests that an error is returned if the "winner" field is not provided
-      //   2. Run the tests and make sure your new test fails (since this feature doesn't exist yet)
-      //   3. Add the functionality to create function in server/db/games.js to make your test pass
+    xit('should return an error when location field is not provided', () => {
     });
 
-    xit('game has createdAt date for the current time', () => {
-      // Hint: To test this in-depth, try mocking the date with Sinon.js
-      // This way you can set a random date, create a new game in the database,
-      // and then assert that the game in the database matches the date you set exactly!
+    xit('should add ID field to market', () => {
+    });
+
+    xit('should add createdAt field with current time', () => {
+      /**
+       * Hint: To test this in-depth, try mocking the date with Sinon.js This
+       * way you can set a random date, create a new market in the database,
+       * and then assert that the market in the database matches the date you
+       * set exactly!
+       */
     });
   });
 
   // TODO: Unit test the #find and #drop functions
-
-  describe('#find', () => {
-    xit('returns list of all games from the json file', () => {
+  xdescribe('#find', () => {
+    it('returns list of all markets from the json file', () => {
     });
 
-    xit('works if the list of games is empty', () => {
+    it('works if the list of markets is empty', () => {
     });
   });
 
-  describe('#drop', () => {
-    xit('writes an empty array to the json file', () => {
+  xdescribe('#drop', () => {
+    it('writes an empty array to the json file', () => {
     });
+  });
+
+  /**
+   * Once our tests complete, we enter the teardown phase. In general, the
+   * teardown phase is for restoring everything to its initial state. Here that
+   * means just clearing out our "database."
+   */
+  afterAll((done) => {
+    fs.writeFile(testJsonFile, JSON.stringify([], null, 2), done);
   });
 });

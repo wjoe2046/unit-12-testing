@@ -79,10 +79,7 @@ db.drop = () => {
 };
 
 db.write = () => {
-  fs.writeFile(writeLocation, JSON.stringify(marketList, null, 2), (err) => {
-    if (err) console.error(err);
-    console.log('DB updated');
-  });
+  fs.writeFileSync(writeLocation, JSON.stringify(marketList, null, 2));
 };
 
 db.reset = () => {

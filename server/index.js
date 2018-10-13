@@ -15,18 +15,7 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-function validateBody(prop) {
-  return function (req, res, next) {
-    if (req.body[prop] === undefined) {
-      return res.status(422).json({ error: `${prop} key is required` });
-    }
-    next();
-  };
-}
-
 app.post('/markets',
-  validateBody('location'),
-  validateBody('cards'),
   (req, res) => {
     const { location, cards } = req.body;
     const newMarket = db.create({ location, cards });
