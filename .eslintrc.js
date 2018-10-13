@@ -1,12 +1,13 @@
-{
-  "extends": "airbnb",
-  "root": true,
-  "env": {
-    "browser": true,
-    "node": true,
-    "jest": true
+module.exports = {
+  extends: "airbnb",
+  root: true,
+  env: {
+    browser: true,
+    node: true,
+    jest: true
   },
-  "rules": {
+  rules: {
+    "arrow-parens": "off",
     "consistent-return": "off",
     "func-names": "off",
     "no-console": "off",
@@ -16,4 +17,4 @@
     "react/jsx-filename-extension": "off",
     "react/prop-types": "off",
   },
-}
+};

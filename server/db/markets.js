@@ -28,7 +28,7 @@ db.create = (market) => {
     updatedAt: new Date().toISOString(),
   });
   marketList.push(newMarket);
-  fs.writeFileSync(writeLocation, JSON.stringify(marketList, null, 2));
+  db.write();
   return marketList.slice(-1)[0];
 };
 
@@ -45,7 +45,7 @@ db.update = (market) => {
     market,
     { updatedAt: new Date().toISOString() },
   );
-  fs.writeFileSync(writeLocation, JSON.stringify(marketList, null, 2));
+  db.write();
   return marketList[market.id];
 };
 
@@ -58,12 +58,13 @@ db.update = (market) => {
 db.find = () => marketList;
 
 /**
- * #has - Checks if DB has a market with a corresponding ID.
+ * #findById - Gets the record with a matching ID. Returns undefined if the
+ * record doesn't exist.
  *
  * @param {Number} id - The id of a potential market
- * @return {Boolean} whether or not that market exists
+ * @return {Object} The matching market
  */
-db.has = id => marketList.length > id;
+db.findById = id => marketList[id];
 
 /**
  * #drop - Deletes everything from the appropriate markets.env.json file and
@@ -73,8 +74,15 @@ db.has = id => marketList.length > id;
  */
 db.drop = () => {
   marketList = [];
-  fs.writeFileSync(writeLocation, JSON.stringify(marketList, null, 2));
+  db.write();
   return true;
+};
+
+db.write = () => {
+  fs.writeFile(writeLocation, JSON.stringify(marketList, null, 2), (err) => {
+    if (err) console.error(err);
+    console.log('DB updated');
+  });
 };
 
 db.reset = () => {

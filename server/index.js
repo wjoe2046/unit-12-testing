@@ -33,13 +33,16 @@ app.post('/markets',
     res.status(201).json(newMarket);
   });
 
-app.put('/markets/:id',
+app.patch('/markets/:id',
   (req, res) => {
-    const { location, cards } = req.body;
-    if (!db.has(parseInt(req.params.id))) {
+    const { id } = req.params;
+    const market = db.findById(parseInt(id));
+    const cards = market.cards + req.body.cards;
+    if (cards < 0) return res.status(422).json({ error: 'too low!' });
+    if (!market) {
       return res.status(404).json({ error: 'No market to update' });
     }
-    res.json(db.update({ location, cards }));
+    res.json(db.update({ id, cards }));
   });
 
 app.get('/markets', (req, res) => {

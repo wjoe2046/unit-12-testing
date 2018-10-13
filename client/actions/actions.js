@@ -12,36 +12,36 @@
 import axios from 'axios';
 import * as types from '../constants/actionTypes';
 
-export const addCard = id => ({
-  type: types.ADD_CARD,
-  payload: id,
-});
-
-export const deleteCard = id => ({
-  type: types.DELETE_CARD,
-  payload: id,
-});
-
-export function addMarket() {
-  return async (dispatch, getState) => {
-    const newMarket = {
-      location: getState().markets.newLocation,
-      cards: 0,
-    };
-    try {
-      const { data } = await axios.post('/markets', newMarket);
-      dispatch({
-        type: types.ADD_MARKET,
-        payload: data,
-      });
-    } catch (err) {
-      console.error({ err });
-    }
-  };
-}
-
-
 export const updateLocation = data => ({
   type: types.UPDATE_LOCATION,
   payload: data,
 });
+
+export const addCard = id => dispatch => {
+  axios.patch(`/markets/${id}`, { cards: 1 })
+    .then(({ status }) => {
+      if (status === 200) {
+        dispatch({ type: types.ADD_CARD, payload: id });
+      }
+    })
+    .catch(console.error);
+};
+
+export const deleteCard = id => dispatch => {
+  axios.patch(`/markets/${id}`, { cards: -1 })
+    .then(({ status }) => {
+      if (status === 200) {
+        dispatch({ type: types.DELETE_CARD, payload: id });
+      }
+    })
+    .catch(console.error);
+};
+
+export const addMarket = () => (dispatch, getState) => {
+  axios.post('/markets', {
+    location: getState().markets.newLocation,
+    cards: 0,
+  })
+    .then(({ data }) => dispatch({ type: types.ADD_MARKET, payload: data }))
+    .catch(console.error);
+};
