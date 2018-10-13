@@ -18,17 +18,35 @@ const db = {};
  * ISO string to the market, and then appends it to the array of
  * markets in the markets.env.json file.
  *
- * @param {Object} market - The new game to be added to the DB
+ * @param {Object} market - The new market to be added to the DB
  * @return {Object} the market that was created
  */
 db.create = (market) => {
   const newMarket = Object.assign(market, {
     id: marketList.length,
     createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   });
   marketList.push(newMarket);
   fs.writeFileSync(writeLocation, JSON.stringify(marketList, null, 2));
   return marketList.slice(-1)[0];
+};
+
+/**
+ * #update - Overwrites existing market with new data.
+ *
+ * @param {Object} market - The market data to apply, including the id of the
+ * market to overwrite
+ * @return {Object} the new market record
+ */
+db.update = (market) => {
+  Object.assign(
+    marketList[market.id],
+    market,
+    { updatedAt: new Date().toISOString() },
+  );
+  fs.writeFileSync(writeLocation, JSON.stringify(marketList, null, 2));
+  return marketList[market.id];
 };
 
 /**
@@ -38,6 +56,14 @@ db.create = (market) => {
  * @return {Array} the list of markets
  */
 db.find = () => marketList;
+
+/**
+ * #has - Checks if DB has a market with a corresponding ID.
+ *
+ * @param {Number} id - The id of a potential market
+ * @return {Boolean} whether or not that market exists
+ */
+db.has = id => marketList.length > id;
 
 /**
  * #drop - Deletes everything from the appropriate markets.env.json file and
