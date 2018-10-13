@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Codesmith testing unit",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "nodemon server/index.js",
     "build": "webpack -w",
     "test": "jest"
   },
@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/CodesmithLLC/unit-12-testing#readme",
   "dependencies": {
+    "@babel/plugin-transform-async-to-generator": "^7.1.0",
+    "@babel/runtime": "^7.1.2",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cross-env": "^5.2.0",
     "ejs": "^2.6.1",
@@ -28,10 +31,12 @@
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "redux-devtools-extension": "^2.13.5"
+    "redux-devtools-extension": "^2.13.5",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
@@ -49,6 +54,7 @@
     "jest": "^23.6.0",
     "jest-puppeteer": "^3.4.0",
     "node-sass": "^4.9.3",
+    "nodemon": "^1.18.4",
     "puppeteer": "^1.9.0",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.5.2",

@@ -19,7 +19,7 @@ const MarketCreator = ({
   <div>
     <input
       value={newLocation}
-      onChange={event => updateLocation(event.target.value)}
+      onChange={e => updateLocation(e.target.value)}
     />
     <button type="button" onClick={addMarket}>Add Market</button>
   </div>
