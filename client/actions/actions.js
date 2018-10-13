@@ -37,9 +37,12 @@ export const deleteCard = id => dispatch => {
     .catch(console.error);
 };
 
-export const addMarket = () => (dispatch, getState) => {
+export const addMarket = event => (dispatch, getState) => {
+  event.preventDefault();
+  const location = getState().markets.newLocation;
+  if (!location) return;
   axios.post('/markets', {
-    location: getState().markets.newLocation,
+    location,
     cards: 0,
   })
     .then(({ data }) => dispatch({ type: types.ADD_MARKET, payload: data }))

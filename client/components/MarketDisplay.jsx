@@ -12,15 +12,25 @@
 import React from 'react';
 import LabeledText from './LabeledText';
 
-const MarketDisplay = props => (
-  <div className="marketBox">
-    <LabeledText label="Market ID" text={props.id} />
-    <LabeledText label="Location" text={props.location} />
-    <LabeledText label="Cards" text={props.cards} />
-    <LabeledText label="% of total" text={props.percentage} />
-    <button onClick={() => props.addCard(props.id)}>+</button>
-    <button onClick={() => props.deleteCard(props.id)}>-</button>
-  </div>
-);
+const rateLimit = (action, arg) => ({ target }) => {
+  target.disabled = true;
+  action(arg);
+  setTimeout(() => target.disabled = false, 300);
+};
+
+const MarketDisplay = props => {
+  const addCard = rateLimit(props.addCard, props.id);
+  const deleteCard = rateLimit(props.deleteCard, props.id);
+  return (
+    <div className="marketBox">
+      <LabeledText label="Market ID" text={props.id} />
+      <LabeledText label="Location" text={props.location} />
+      <LabeledText label="Cards" text={props.cards} />
+      <LabeledText label="% of total" text={props.percentage} />
+      <button onClick={addCard}>+</button>
+      <button onClick={deleteCard}>-</button>
+    </div>
+  );
+};
 
 export default MarketDisplay;

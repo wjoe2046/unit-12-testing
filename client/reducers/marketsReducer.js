@@ -19,8 +19,6 @@ const initialState = {
 };
 
 const marketsReducer = (state = initialState, action) => {
-  let marketList;
-
   switch (action.type) {
     case types.ADD_MARKET:
       return {
@@ -39,11 +37,10 @@ const marketsReducer = (state = initialState, action) => {
     case types.ADD_CARD: {
       const newMarketList = state.marketList.map((market) => {
         if (market.id === action.payload) {
-          const newMarket = {
+          return {
             ...market,
             cards: market.cards + 1,
           };
-          return newMarket;
         }
         return market;
       });
@@ -56,10 +53,8 @@ const marketsReducer = (state = initialState, action) => {
     }
 
     case types.DELETE_CARD: {
-      let change = 0;
       const newMarketList = state.marketList.map((market) => {
-        if (market.id === action.payload && market.cards > 0) {
-          change = -1;
+        if (market.id === action.payload) {
           return {
             ...market,
             cards: market.cards - 1,
@@ -70,7 +65,7 @@ const marketsReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        totalCards: state.totalCards + change,
+        totalCards: state.totalCards - 1,
         marketList: newMarketList,
       };
     }
