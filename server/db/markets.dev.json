@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "location": "Meadow Street",
+    "cards": "5",
+    "id": 0,
+    "createdAt": "2018-10-15T07:22:41.821Z",
+    "updatedAt": "2018-10-15T07:22:41.821Z"
+  }
+]

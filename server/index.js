@@ -1,43 +1,42 @@
+/* eslint no-unused-vars: 0 */
 const path = require('path');
 const express = require('express');
-const bodyparser = require('body-parser');
 const db = require('./db/markets');
 
 const app = express();
-app.set('view engine', 'ejs');
-app.set('views', './views');
+const port = process.env.PORT || 3000;
 
-app.use(express.static(path.resolve(__dirname, '..', 'dist')));
+app.use(express.static(path.resolve(__dirname, '../dist')));
+app.use(express.json());
 
-app.use(bodyparser.json());
+app.post('/markets', (req, res, next) => {
+  const { location, cards } = req.body;
+  if (!location || !cards) {
+    return next({ code: 400, error: 'Location and cards fields required' });
+  }
 
-app.get('/', (req, res) => {
-  res.render('index');
+  const newMarket = db.create({ location, cards });
+  res.status(201).json(newMarket);
 });
 
-app.post('/markets',
-  (req, res) => {
-    const { location, cards } = req.body;
-    const newMarket = db.create({ location, cards });
-    res.status(201).json(newMarket);
-  });
+app.patch('/markets/:id', (req, res, next) => {
+  const { id } = req.params;
+  const market = db.findById(parseInt(id));
+  if (!market) {
+    return next({ code: 404, error: 'No market to update' });
+  }
 
-app.patch('/markets/:id',
-  (req, res) => {
-    const { id } = req.params;
-    const market = db.findById(parseInt(id));
-    const cards = market.cards + req.body.cards;
-    if (cards < 0) return res.status(422).json({ error: 'too low!' });
-    if (!market) {
-      return res.status(404).json({ error: 'No market to update' });
-    }
-    res.json(db.update({ id, cards }));
-  });
+  const cards = market.cards + req.body.cards;
+  if (cards < 0) return next({ code: 400, error: 'Too low!' });
+  res.json(db.update({ id, cards }));
+});
 
 app.get('/markets', (req, res) => {
   res.json(db.find());
 });
 
-const port = process.env.PORT || 3000;
+app.use(({ code, error }, req, res, next) => {
+  res.status(code).json({ error });
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
