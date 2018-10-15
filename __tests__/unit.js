@@ -7,20 +7,13 @@ const testJsonFile = path.resolve(__dirname, '../server/db/markets.test.json');
 
 describe('db unit tests', () => {
   /**
-   * Jest runs the "beforeAll" function once, before any tests are executed. If
-   * you need to perform an asynchronous operation during a Jest function, then
-   * you have two options. One is to return a promise, and Jest will wait until
-   * that promise resolves before moving on.
-   *
-   * The second way is to provide a callback function named "done" (like
-   * below). If you provide the callback, then Jest will wait until the "done"
-   * callback has been called. Here, we invoke "done" in fs.writeFile's
-   * callback function, after writing to the file and then resetting our
-   * database model. This way, the tests won't start until the "database" has
-   * been reset to an empty Array!
+   * Jest runs the "beforeAll" function once, before any tests are executed.
+   * Here, we write to the file and then reset our database model. Then, we
+   * invoke the "done" callback to tell Jest our async operations have
+   * completed. This way, the tests won't start until the "database" has been
+   * reset to an empty Array!
    */
   beforeAll((done) => {
-    // Make sure "db" is empty
     fs.writeFile(testJsonFile, JSON.stringify([], null, 2), () => {
       db.reset();
       done();
@@ -29,9 +22,7 @@ describe('db unit tests', () => {
 
   /**
    * Like many testing frameworks, in Jest we use the "describe" function to
-   * separate our tests into sections. The main purpose here is to make the
-   * console output easier to read. Each test inside of a describe block will
-   * have its output indented inside of its description.
+   * separate our tests into sections. They make your test outputs readable.
    *
    * You can place "beforeAll", "beforeEach", "afterAll", and "afterEach"
    * functions inside of "describe" blocks and they will only run for tests
@@ -48,8 +39,7 @@ describe('db unit tests', () => {
 
     // TODO: Finish unit testing the create function
 
-    xit('should create a second market without overwriting the first', () => {
-    });
+    xit('should create a second market without overwriting the first', () => {});
 
     xit('should return an error when location field is not provided', () => {
       /**
@@ -65,11 +55,9 @@ describe('db unit tests', () => {
        */
     });
 
-    xit('should return an error when location field is not provided', () => {
-    });
+    xit('should return an error when location field is not provided', () => {});
 
-    xit('should add ID field to market', () => {
-    });
+    xit('should add ID field to market', () => {});
 
     xit('should add createdAt field with current time', () => {
       /**
@@ -83,16 +71,13 @@ describe('db unit tests', () => {
 
   // TODO: Unit test the #find and #drop functions
   xdescribe('#find', () => {
-    it('returns list of all markets from the json file', () => {
-    });
+    it('returns list of all markets from the json file', () => {});
 
-    it('works if the list of markets is empty', () => {
-    });
+    it('works if the list of markets is empty', () => {});
   });
 
   xdescribe('#drop', () => {
-    it('writes an empty array to the json file', () => {
-    });
+    it('writes an empty array to the json file', () => {});
   });
 
   /**
