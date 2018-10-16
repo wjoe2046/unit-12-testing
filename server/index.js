@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.post('/markets', (req, res, next) => {
   const { location, cards } = req.body;
-  if (!location || !cards) {
+  if (typeof location !== 'string' || typeof cards !== 'number') {
     return next({ code: 400, error: 'Location and cards fields required' });
   }
 
@@ -39,4 +39,4 @@ app.use(({ code, error }, req, res, next) => {
   res.status(code).json({ error });
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+module.exports = app.listen(port, () => console.log(`Listening on port ${port}`));
