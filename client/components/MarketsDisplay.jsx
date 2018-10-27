@@ -18,7 +18,7 @@ const percentOfTotal = (cardCount, total) => (
 const marketMaker = (market, idx, props) => (
   <MarketDisplay
     {...market}
-    key={market.location + idx}
+    key={idx}
     percentage={percentOfTotal(market.cards, props.totalCards)}
     index={idx}
     addCard={() => props.addCard(idx)}

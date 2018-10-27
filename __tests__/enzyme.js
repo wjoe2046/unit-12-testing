@@ -3,37 +3,44 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 // Enzyme is a wrapper around React test utilities which makes it easier to
 // shallow render and traverse the shallow rendered tree.
-import Square from '../src/components/Square';
+import LabeledText from '../client/components/LabeledText';
 
 configure({ adapter: new Adapter() });
 
 describe('React unit tests', () => {
-  describe('<Square />', () => {
+  describe('LabeledText', () => {
     let wrapper;
 
     beforeAll(() => {
-      wrapper = shallow(<Square row={0} square={1} letter="X" handleClick={() => {}} />);
+      wrapper = shallow(<LabeledText label="Mega" text="Markets" />);
     });
 
-    it('Renders a <div> with class "square"', () => {
-      expect(wrapper.text()).toEqual('X');
-      expect(wrapper.type()).toEqual('div');
-      expect(wrapper.props().className).toEqual('square');
-    });
-
-    xit('Clicking on the square passes row and square props to handleClick', () => {
-
+    it('Renders a <p> tag with the label in bold', () => {
+      expect(wrapper.type()).toEqual('p');
+      expect(wrapper.text()).toEqual('Mega: Markets');
+      expect(wrapper.find('strong').text()).toMatch('Mega');
     });
   });
 
-  describe('<Row />', () => {
-    // TODO: Write a test to make sure a Row renders 3 Squares
+  describe('MarketDisplay', () => {
+    // TODO: Test the following:
+    // 1. A MarketDisplay should display all of its text props inside a
+    // LabeledText component
+    // 2. It should also contain a div with two buttons
+    // 2. The functions passed down should be invoked on click
+    // 3. MarketDisplay should render a div with a class of `innerbox`, and the
+    // interior div wrapping the two buttons should have a class of `flex`
 
   });
 
-  describe('GameList', () => {
-    // TODO: Write a test to make sure a GameList renders a <ul> with an <li>
-    // for every item in its gameList array prop
-
+  describe('MarketsDisplay', () => {
+    // TODO: Test the following:
+    //   1. A MarketsDisplay should have an h4 element to display the 'Markets'
+    //   title
+    //   2. A single MarketDisplay is rendered for each market in the
+    //   marketList prop
+    //   3. The special `key` prop in React should NOT receive the index of the
+    //   market from its array (right now this is implemented incorrectly, so
+    //   follow TDD here)
   });
 });
