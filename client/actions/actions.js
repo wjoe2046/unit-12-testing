@@ -46,3 +46,14 @@ export const syncMarkets = () => (dispatch, getState) => {
     })
     .catch(console.error);
 };
+
+export const loadMarkets = () => (dispatch) => {
+  axios.get('/markets')
+    .then(({ data }) => {
+      dispatch({
+        type: types.LOAD_MARKETS,
+        payload: data,
+      });
+    })
+    .catch(console.error);
+};

@@ -74,12 +74,19 @@ const marketsReducer = (state = initialState, action) => {
       };
     }
 
-    case types.SYNC_MARKETS: {
+    case types.SYNC_MARKETS:
       return {
         ...state,
         synced: true,
       };
-    }
+
+    case types.LOAD_MARKETS:
+      return {
+        ...state,
+        totalMarkets: action.payload.length,
+        totalCards: action.payload.reduce((res, m) => res + m.cards, 0),
+        marketList: action.payload,
+      };
 
     default:
       return state;
