@@ -17,34 +17,24 @@ export const updateLocation = data => ({
   payload: data,
 });
 
-export const addCard = id => dispatch => {
-  axios.patch(`/markets/${id}`, { cards: 1 })
-    .then(({ status }) => {
-      if (status === 200) {
-        dispatch({ type: types.ADD_CARD, payload: id });
-      }
-    })
-    .catch(console.error);
-};
+export const addCard = id => ({
+  type: types.ADD_CARD,
+  payload: id,
+});
 
-export const deleteCard = id => dispatch => {
-  axios.patch(`/markets/${id}`, { cards: -1 })
-    .then(({ status }) => {
-      if (status === 200) {
-        dispatch({ type: types.DELETE_CARD, payload: id });
-      }
-    })
-    .catch(console.error);
+export const deleteCard = id => (dispatch, getState) => {
+  if (getState().markets.marketList[id].cards > 0) {
+    dispatch({ type: types.DELETE_CARD, payload: id });
+  }
 };
 
 export const addMarket = event => (dispatch, getState) => {
   event.preventDefault();
   const location = getState().markets.newLocation;
-  if (!location) return;
-  axios.post('/markets', {
-    location,
-    cards: 0,
-  })
-    .then(({ data }) => dispatch({ type: types.ADD_MARKET, payload: data }))
-    .catch(console.error);
+  if (location) {
+    dispatch({
+      type: types.ADD_MARKET,
+      payload: { location, cards: 0 },
+    });
+  }
 };
