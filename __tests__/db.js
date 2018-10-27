@@ -32,38 +32,34 @@ describe('db unit tests', () => {
     fs.writeFile(testJsonFile, JSON.stringify([], null, 2), done);
   });
 
-  describe('#create', () => {
-    it('writes a valid market to the JSON file', () => {
-      const market = { cards: 0, location: 'here' };
-      db.create(market);
-      const marketList = JSON.parse(fs.readFileSync(testJsonFile));
-      expect(marketList.length).toEqual(1);
-      expect(marketList[0].location).toEqual(market.location);
+  describe('#sync', () => {
+    it('writes a valid marketList to the JSON file', () => {
+      const marketList = [{ location: 'here', cards: 11 }, { location: 'there', cards: 0 }];
+      const result = db.sync(marketList);
+      expect(result).not.toBeInstanceOf(Error);
+      const table = JSON.parse(fs.readFileSync(testJsonFile));
+      expect(table).toEqual(marketList);
     });
 
-    // TODO: Finish unit testing the create function
+    // TODO: Finish unit testing the sync function
 
-    xit('will create a second market without overwriting the first', () => {
+    xit('overwrites previously existing markets', () => {
     });
 
-    xit('adds ID field to market', () => {
+    xit('returns an error when location and/or cards fields are not provided', () => {
     });
 
-    xit('adds createdAt and updatedAt fields with current time', () => {
-      // To test this in-depth, try mocking the date with lolex. This way you
-      // can set a random date, create a new market in the database, and then
-      // assert that the market in the DB matches the date you set exactly!
+    /**
+     *  TODO: Type validation is not yet correctly implemented! Follow the TDD
+     *  approach:
+     *    1. Write a test describing the desired feature
+     *    2. Confirm that your tests fail
+     *    3. Follow the errors to implement your new functionality
+     */
+    xit('returns an error when location value is not a string', () => {
     });
 
-    xit('returns an error when location or cards field is not provided', () => {
-      /**
-       *  TODO: Practice test-driven development here. Currently the create
-       *  function does not return an error if the location field is not
-       *  provided. Follow the TDD approach:
-       *    1. Write a test describing the desired feature
-       *    2. Confirm that your test fails
-       *    3. Follow the errors to implement your new functionality
-       */
+    xit('returns an error when cards value is not a number', () => {
     });
   });
 
@@ -81,3 +77,4 @@ describe('db unit tests', () => {
     });
   });
 });
+
