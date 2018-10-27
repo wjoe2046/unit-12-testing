@@ -25,8 +25,10 @@ const MarketDisplay = ({
     <LabeledText label="Location" text={location} />
     <LabeledText label="Cards" text={cards} />
     <LabeledText label="% of total" text={percentage} />
-    <button onClick={addCard}>+</button>
-    <button onClick={deleteCard}>-</button>
+    <div className="flex">
+      <button onClick={addCard}>+</button>
+      <button onClick={deleteCard}>-</button>
+    </div>
   </div>
 );
 

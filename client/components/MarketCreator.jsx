@@ -22,7 +22,7 @@ const MarketCreator = ({
         value={newLocation}
         onChange={e => updateLocation(e.target.value)}
       />
-      <button type="submit">Add Market</button>
+      <button className="primary" type="submit">Add Market</button>
     </form>
   </div>
 );

@@ -22,9 +22,7 @@ const mapStateToProps = ({ markets }) => ({
   marketList: markets.marketList,
 });
 
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators(actions, dispatch),
-});
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 const MarketsContainer = props => (
   <div className="innerbox">

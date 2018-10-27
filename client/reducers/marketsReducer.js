@@ -16,6 +16,7 @@ const initialState = {
   totalCards: 0,
   marketList: [],
   newLocation: '',
+  synced: true,
 };
 
 const marketsReducer = (state = initialState, action) => {
@@ -26,6 +27,7 @@ const marketsReducer = (state = initialState, action) => {
         marketList: state.marketList.concat(action.payload),
         totalMarkets: state.totalMarkets + 1,
         newLocation: '',
+        synced: false,
       };
 
     case types.UPDATE_LOCATION:
@@ -49,6 +51,7 @@ const marketsReducer = (state = initialState, action) => {
         ...state,
         totalCards: state.totalCards + 1,
         marketList: newMarketList,
+        synced: false,
       };
     }
 
@@ -67,6 +70,14 @@ const marketsReducer = (state = initialState, action) => {
         ...state,
         totalCards: state.totalCards - 1,
         marketList: newMarketList,
+        synced: false,
+      };
+    }
+
+    case types.SYNC_MARKETS: {
+      return {
+        ...state,
+        synced: true,
       };
     }
 
