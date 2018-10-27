@@ -17,6 +17,10 @@
     "url": "https://github.com/CodesmithLLC/unit-12-testing/issues"
   },
   "homepage": "https://github.com/CodesmithLLC/unit-12-testing#readme",
+  "jest": {
+    "globalSetup": "./jest-setup.js",
+    "globalTeardown": "./jest-teardown.js"
+  },
   "dependencies": {
     "@babel/plugin-transform-async-to-generator": "^7.1.0",
     "@babel/runtime": "^7.1.2",

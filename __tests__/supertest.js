@@ -1,15 +1,11 @@
 const request = require('supertest');
 
-const server = require('../server');
+const server = 'http://localhost:3000';
 
 /**
  * Read the docs! https://www.npmjs.com/package/supertest
  */
 describe('Route integration', () => {
-  afterAll(() => {
-    server.close();
-  });
-
   describe('/', () => {
     describe('GET', () => {
       // Note that we return the evaluation of `request` here! It evaluates to
