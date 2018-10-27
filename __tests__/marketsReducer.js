@@ -9,12 +9,13 @@ describe('MegaMarkets reducer', () => {
       totalCards: 0,
       marketList: [],
       newLocation: '',
+      synced: true,
     };
   });
 
   describe('default state', () => {
     it('should return a default state when given an undefined input', () => {
-      expect(subject(undefined, { type: undefined })).toMatchObject(state);
+      expect(subject(undefined, { type: undefined })).toEqual(state);
     });
   });
 
@@ -30,7 +31,6 @@ describe('MegaMarkets reducer', () => {
       type: 'ADD_MARKET',
       payload: {
         location: 'Azkaban',
-        id: 97,
         cards: 10,
       },
     };
@@ -84,4 +84,38 @@ describe('MegaMarkets reducer', () => {
     xit('makes a new marketList without modifying the other markets', () => {
     });
   });
+
+  // The rest is functionality not included in the original MegaMarkets unit.
+  // In short:
+  //   1. SYNC_MARKETS is our action for writing markets to our "database." The
+  //   only part of client state is affects is the "synced" property on
+  //   markets, which activates/deactivates the button.
+  //   2. LOAD_MARKETS only happens once, on page load, to load up markets from
+  //   the database.
+  describe('SYNC_MARKETS', () => {
+    xit('sets synced to true', () => {
+    });
+  });
+
+  describe('LOAD_MARKETS', () => {
+    xit('replaces its marketList with the payload as-is', () => {
+    });
+
+    xit('sets the correct totalMarkets count', () => {
+    });
+
+    xit('sets the correct totalCards count', () => {
+    });
+  });
+
+  /**
+   * We've got a bug report from a user! They said that the Sync button
+   * "doesn't light up." Unfortunately that's as much detail as they gave.
+   * We could walk through all of the relevant components, actions, reducers,
+   * server routing, and database operations to find the logical flaw, but
+   * we've already written tests for the server and DB! Some better front-end
+   * testing should isolate the error.
+   */
+  // TODO: Revisit the above tests, and add more to validate that the state
+  // which controls that button is behaving correctly in all cases.
 });

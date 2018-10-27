@@ -70,7 +70,6 @@ const marketsReducer = (state = initialState, action) => {
         ...state,
         totalCards: state.totalCards - 1,
         marketList: newMarketList,
-        synced: false,
       };
     }
 
