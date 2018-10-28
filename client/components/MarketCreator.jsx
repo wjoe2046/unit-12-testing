@@ -19,6 +19,7 @@ const MarketCreator = ({
   <div>
     <form onSubmit={addMarket}>
       <input
+        id="new-location"
         value={newLocation}
         onChange={e => updateLocation(e.target.value)}
       />

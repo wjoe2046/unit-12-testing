@@ -13,7 +13,7 @@ import React from 'react';
 import Wrapper from './containers/MainContainer';
 
 const App = () => (
-  <div>
+  <div id="app">
     <Wrapper />
   </div>
 );
