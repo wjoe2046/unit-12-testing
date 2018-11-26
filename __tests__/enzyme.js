@@ -27,8 +27,8 @@ describe('React unit tests', () => {
     // 1. A MarketDisplay should display all of its text props inside a
     // LabeledText component
     // 2. It should also contain a div with two buttons
-    // 2. The functions passed down should be invoked on click
-    // 3. MarketDisplay should render a div with a class of `innerbox`, and the
+    // 3. The functions passed down should be invoked on click
+    // 4. MarketDisplay should render a div with a class of `innerbox`, and the
     // interior div wrapping the two buttons should have a class of `flex`
 
   });

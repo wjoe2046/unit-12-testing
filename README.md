@@ -11,7 +11,7 @@ The learning goals for this unit are as follows:
 - Learn to identify when a function is testable or not, and how to make testable functions
 
 ### Testing Framework
-The testing framework used in your previous units is called Mocha. It's a hugely powerful framework, and easily one of the most widely used in the JS ecosystem. But in this testing unit, we'll be using a different framework called [Jest](https://jestjs.io/). If you know one, working with the other is an easy transition. We'll be using Jest as it's a faster-growing library, has a built-in assertion library (`expect`), and much more readable console output.
+The testing framework used in most of your previous units is called Mocha. It's an excellent, lightweight framework, and easily one of the most widely used in the JS ecosystem. But in this testing unit, we'll be using a different framework called [Jest](https://jestjs.io/). If you know one, working with the other is an easy transition. We'll be using Jest as it's a faster-growing framework, has a built-in assertion library (`expect`), and much more readable console output.
 
 With Jest, we run our tests using either the command-line tool (`npm install -g jest` and then simply `jest`), or by running it via a script (in this project, `npm test`). Jest adds some global functions and environment variables to the JavaScript environment which help with control flow and readability when defining tests, such as `beforeAll`, `afterAll`, `describe`, `it`, `beforeEach`, `afterEach`, and its assertion library `expect`. It outputs the results of the test to the terminal with a summary of test passes, failures, and skips.
 
@@ -29,10 +29,10 @@ if (result !== 4) {
   throw new Error('Adding 1 and 3 should equal 4');
 }
 ```
-This is a very unwieldy way of writing assertions. Assertion libraries like [expect](https://github.com/mjackson/expect)(built-in with Jest) give us a better way:
+This is a very unwieldy way of writing assertions. Assertion libraries like [expect](https://github.com/mjackson/expect) (which is built-in with Jest) give us a better way:
 ```
 const result = add(1, 3);
-expect(result).toEqual(4, 'Expected function to return 4');
+expect(result).toEqual(4);
 ```
 Not only is this quick and easy to write, it's immediately legible to any non-JS engineers, and project stakeholders who may not be engineers at all! Well-written tests can become a contract we use to make feature requirements meaningful.
 
@@ -40,6 +40,9 @@ Assertion libraries also provide some added bonuses, such as reporting the expec
 
 ### Unit Tests
 Unit tests attempt to *isolate* an individual function and ensure that that function does what it says it does. Functions are much easier to unit test when they have their *dependencies injected*, that is to say, when their dependencies are passed in as parameters. Unit tests are generally faster than integration tests since they are testing smaller chunks of code. If a function relies on another function in order to do its job, we typically will *mock out* the functions that are relied upon. This allows us to test just the function we care about. Jest has built-in functionality for mocking, but there are many other libraries which exist to making mocking easier, such as [Sinon.JS](http://sinonjs.org/docs/), [Nock](https://github.com/node-nock/nock), or [mockery](https://github.com/mfncooper/mockery).
+
+### Snapshots
+A lot of the time, the biggest benefit of tests is just that they let us know when the code we change has unintended consequences somewhere else in the codebase. **Snapshots** are a powerful Jest feature to address this: rather than checking the properties of function outputs one by one, we compare the output to a previous version that was recorded _when we knew it was correct._ This lets us cover a lot of code without having to dig too deep, but they're only as reliable as the code they're testing, and can't be used for TDD.
 
 ### Integration Tests
 Unit tests help us isolate the exact source of bugs. Integration tests attempt to ensure that groups of functions working together provide an expected output. For example, an integration test may make sure that if an HTTP GET request hits my server at the `/cats` route then my server's router handler will send a list of all cats in the database as JSON. In the background, the server's route handler may have interacted with multiple controller functions and database calls. It may also just directly test a function which relies on the results of multiple other functions, and allow the function to call those functions rather than mocking them out like a unit test might. Integration tests are typically slower to run than unit tests.
@@ -55,7 +58,7 @@ A browser automator tests front-end code by actually running an automated versio
 #### Headless browser
 A headless browser is a lightweight attempt at mimicking a browser for testing without having to perform the resource-intensive practice of actually running a browser. Examples of headless browsers are [PhantomJS](http://phantomjs.org/) and [Puppeteer](https://github.com/GoogleChrome/puppeteer). There are [lots](https://github.com/dhamaniasad/HeadlessBrowsers) of headless browsers out there (and most of them have spoooooky names).
 
-The difference between headless and automated browsers is gray: Cypress has a headless mode, and Puppeteer has a non-headless one! Just remember that headless browsers don't _render to a screen._
+The difference between headless and automated browsers is gray: Cypress has a headless mode, and Puppeteer has a non-headless one! A key difference for distinguishing between the two is that headless browsers don't _render to a screen._
 
 ### Unit Testing front-end code
 Front-end libraries and frameworks such as React and Angular are a bit tricky to unit test because of their heavy coupling with the DOM. For instance, I can't just require in a single React Component and make sure it renders 5 cats, because that Component expects to be rendered into the DOM and may rely on `props`, `state`, browser APIs and more in order to even render correctly. Luckily, these libraries have options of testing utilities that make unit testing them possible.
@@ -63,7 +66,7 @@ Front-end libraries and frameworks such as React and Angular are a bit tricky to
 With React, a very helpful tool is [shallow rendering](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering). This allows us to simulate the rendering of a single component, passing in whatever props we desire and setting its state however we want. Then we can see what the resulting rendered HTML would look like and ensure that the right elements exist on the page. Libraries such as [enzyme](http://airbnb.io/enzyme/) make shallow rendering easier to work with and allow us to shallow render multiple layers of nested components.
 
 ### Test-driven Development
-Test-driven development, or TDD, is the process of writing tests for a feature BEFORE adding the actual feature. Advocators of TDD argue that developers who strictly follow TDD end up writing more modular, maintainable, and readable code. Here is the general process to follow:
+Test-driven development, or TDD, is the process of writing tests for a feature BEFORE adding the actual feature. Advocates of TDD argue that developers who strictly follow TDD end up writing more modular, maintainable, and readable code. Here is the general process to follow:
   1. Identify the feature to be added
   2. Write a test that tests that the feature exists and works
   3. Run your tests and ensure that your new test is failing (because the feature doesn't exist yet)
@@ -75,7 +78,7 @@ Test-driven development, or TDD, is the process of writing tests for a feature B
 - [ ]  run `npm test` to run your test suite
 - [ ] `npm start` to start your server on port 3000
 - [ ]  in another terminal window run `npm run build` to bundle your modules
-- [ ]  optionally, run `npm install -g jest` to be able to run `jest <filename` to run individual tests
+- [ ]  optionally, run `npm install -g jest` to be able to run `jest <filename>` to run individual tests
 
 ## Getting Started - testing
 Now we're ready to write some tests!
@@ -85,6 +88,7 @@ Now we're ready to write some tests!
 - [ ] Take some time to really get an understanding of the application.
   - How does the app get and display the list of markets from the server?
   - How does the app manage state and logic?
+  - Remember that in real-life codebases, you may not recognize or understand all of the tooling, and you don't have to! It should generally be enough to get a rough idea of the feature set and where business logic lives.
   - Read over the functions in `server/db/markets.js` to understand how our simplified DB works
 - [ ] Ensure your build steps work by running `npm start` and navigating your browser to `http://localhost:3000`
 - [ ] Check the Chrome dev console and make sure it is free of errors before continuing
@@ -94,8 +98,10 @@ Now we're ready to write some tests!
 - [ ] Complete the reducer tests in `__tests__/marketsReducer.js`
 - [ ] Complete the route integration tests in `__tests__/supertest.js`
 - [ ] Complete the front-end unit tests in `__tests__/enzyme.js`
+- [ ] Before moving on from enzyme, set up [snapshot testing](https://jestjs.io/docs/en/snapshot-testing.html) in your React tests to prevent regression bugs (i.e., bugs in a feature that was confirmed to work correctly in the past).
 - [ ] Complete the front-end Feature/Integration tests in `__tests__/puppeteer.js`
 
+## Extension Challenges
 Your client has complained that saving items to the database is taking too long when multiple requests hit the server at the same time. This is because our naive database implementation is using `readFileSync` and `writeFileSync`, which block the main execution thread of JavaScript while they are running. This is a horrible idea for a server that needs to serve multiple users at the same time! For the next section, we're going to refactor all of our database functions to use the async versions of the fs functions: `readFile` and `writeFile`.
 
 - [ ] Have the db functions in `server/markets.js` accept an additional argument, a callback function which will be invoked once any asynchronous functions are done
@@ -105,9 +111,9 @@ Your client has complained that saving items to the database is taking too long 
 - [ ] Refactor `index.js` (the express server file) to use the new asynchronous db functions correctly
 - [ ] As you refactor, run your unit tests often in order to verify that your refactored code works. By the end, all tests should be green again!
 
-## Extension Challenges
-- [ ] It would've been really useful to have tests in place for your weekly assessments. Choose a previous assessment to get experience in setting up tests from scratch. Your tests should ensure that the specs outlined in the assessment readme are being adhered to.
+A user reported a new bug! Unfortunately, all they said was "the Sync button is broken." Your tests have already confirmed that the server and database handle the sync feature correctly, so it has to be something on the front end.
+- [ ] The sync button is simple, but there are a number of Redux actions that may have influence on whether or not synced state is true. Update your reducers tests so that for each action we can confirm that the "synced" property is being set correctly.
 - [ ] Add an npm script that uses `eslint` to lint your code. An `.eslintrc` file configured with the airbnb style guide has been provided (we've loosened the rules a bit).
 - [ ] Modify the `npm test` script so that it **lints** your code in addition to running the other tests. If there are any lint errors, the test should be counted as a failure.
 - [ ] Fix any lint errors that the lint script found so that your tests pass again.
-- [ ] Set up [snapshot testing](https://jestjs.io/docs/en/snapshot-testing.html) to further prevent regressions
+- [ ] It would've been really useful to have tests in place for your weekly assessments. Choose a previous assessment to get experience in setting up tests from scratch. Your tests should ensure that the specs outlined in the assessment readme are being adhered to.
