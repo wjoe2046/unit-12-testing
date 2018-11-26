@@ -20,7 +20,7 @@ describe('MegaMarkets reducer', () => {
   });
 
   describe('unrecognized action types', () => {
-    it('should return the original without any duplication', () => {
+    it('should return the original state', () => {
       const action = { type: 'aajsbicawlbejckr' };
       expect(subject(state, action)).toBe(state);
     });
@@ -44,8 +44,11 @@ describe('MegaMarkets reducer', () => {
     });
 
     // Remember that in Redux we never mutate. If something changes, we copy
-    // the data structure! Hint: `toBe` or `not.toBe` are your questions.
-    xit('makes a new marketList', () => {
+    // the data structure! Hint: `.toBe` or `.not.toBe` are your questions.
+    xit('returns a state object not strictly equal to the original', () => {
+    });
+
+    xit('includes a marketList not strictly equal to the original', () => {
     });
 
     xit('clears the newLocation field', () => {
@@ -56,7 +59,7 @@ describe('MegaMarkets reducer', () => {
     xit('updates location with the action payload', () => {
     });
 
-    xit('returns a new state', () => {
+    xit('returns a state object not strictly equal to the original', () => {
     });
 
     xit('doesn\'t touch the marketList array', () => {
@@ -70,7 +73,10 @@ describe('MegaMarkets reducer', () => {
     xit('increases total card count by 1', () => {
     });
 
-    xit('makes a new marketList without modifying the other markets', () => {
+    xit('includes a marketList not strictly equal to the original', () => {
+    });
+
+    xit('does not mutate or duplicate other markets in marketList', () => {
     });
   });
 
@@ -81,7 +87,10 @@ describe('MegaMarkets reducer', () => {
     xit('decreases total card count by 1', () => {
     });
 
-    xit('makes a new marketList without modifying the other markets', () => {
+    xit('includes a marketList not strictly equal to the original', () => {
+    });
+
+    xit('does not mutate or duplicate other markets in marketList', () => {
     });
   });
 
