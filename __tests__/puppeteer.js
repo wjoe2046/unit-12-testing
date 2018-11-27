@@ -60,34 +60,26 @@ describe('Front-end Integration/Features', () => {
     });
   });
 
-  xdescribe('State interactions', () => {
+  describe('State interactions', () => {
     xit('can add a new market', () => {
     });
 
-    xit('can add cards to that market', () => {
+    xit('can add and remove cards', () => {
     });
 
-    xit('can delete cards from a market with more than zero cards', () => {
-    });
-
-    xit('CAN\'T delete cards from a market with zero cards', () => {
+    xit('cannot delete cards from a market with zero cards', () => {
     });
   });
 
   describe('Server interactions', () => {
+    // TODO: You'll need to require in and query the test DB in order to ensure
+    // that the right items show up. You may find it's easiest to start each
+    // test with a fresh DB.
     xit('loads all markets from database on pageload', () => {
-      // TODO: You'll need to require in and query the test DB in order to ensure
-      // that the right items show up.
     });
 
-    xit('overwrites the database with app state when pressing the Sync button', () => {
+    xit('maintains synced state after refresh', () => {
       // First you'll need to make something to sync!
-    });
-
-    xit('maintains data changes on refresh if they have been synced', () => {
-    });
-
-    xit('forgets data changes on refresh if they have NOT been synced', () => {
     });
   });
 });

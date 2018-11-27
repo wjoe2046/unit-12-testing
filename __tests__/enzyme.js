@@ -1,18 +1,27 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import toJson from 'enzyme-to-json';
+
 // Enzyme is a wrapper around React test utilities which makes it easier to
 // shallow render and traverse the shallow rendered tree.
 import LabeledText from '../client/components/LabeledText';
+import MarketDisplay from '../client/components/MarketDisplay';
+import MarketsDisplay from '../client/components/MarketsDisplay';
 
+// Newer Enzyme versions require an adapter to a particular version of React
 configure({ adapter: new Adapter() });
 
 describe('React unit tests', () => {
   describe('LabeledText', () => {
     let wrapper;
+    const props = {
+      label: 'Mega',
+      text: 'Markets',
+    };
 
     beforeAll(() => {
-      wrapper = shallow(<LabeledText label="Mega" text="Markets" />);
+      wrapper = shallow(<LabeledText {...props} />);
     });
 
     it('Renders a <p> tag with the label in bold', () => {
@@ -39,8 +48,8 @@ describe('React unit tests', () => {
     //   title
     //   2. A single MarketDisplay is rendered for each market in the
     //   marketList prop
-    //   3. The special `key` prop in React should NOT receive the index of the
-    //   market from its array (right now this is implemented incorrectly, so
-    //   follow TDD here)
+    //   3. The percentage prop should be a string calculated to two decimals.
+    //   Test for zero, a whole number, and a fractional value. (Right now this
+    //   is implemented incorrectly, so follow TDD here)
   });
 });

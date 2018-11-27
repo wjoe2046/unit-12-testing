@@ -1,5 +1,10 @@
 import subject from '../client/reducers/marketsReducer';
 
+/**
+ * One of the main benefits of reducers is how testable they are. Since they're
+ * pure (in theory), all we have to do is look at the inputs and outputs. We
+ * can also add some tests to determine if the reducer really is pure!
+ */
 describe('MegaMarkets reducer', () => {
   let state;
 
@@ -20,7 +25,7 @@ describe('MegaMarkets reducer', () => {
   });
 
   describe('unrecognized action types', () => {
-    it('should return the original state', () => {
+    it('should return the original without any duplication', () => {
       const action = { type: 'aajsbicawlbejckr' };
       expect(subject(state, action)).toBe(state);
     });

@@ -22,14 +22,14 @@ describe('db unit tests', () => {
    * reset to an empty Array!
    */
   beforeAll((done) => {
-    fs.writeFile(testJsonFile, JSON.stringify([], null, 2), () => {
+    fs.writeFile(testJsonFile, JSON.stringify([]), () => {
       db.reset();
       done();
     });
   });
 
   afterAll((done) => {
-    fs.writeFile(testJsonFile, JSON.stringify([], null, 2), done);
+    fs.writeFile(testJsonFile, JSON.stringify([]), done);
   });
 
   describe('#sync', () => {
@@ -52,7 +52,8 @@ describe('db unit tests', () => {
     /**
      *  TODO: Type validation is not yet correctly implemented! Follow the TDD
      *  approach:
-     *    1. Write a test describing the desired feature
+     *    1. Write a test describing the desired feature (db.sync returns a
+     *      TypeError when the types are wrong)
      *    2. Confirm that your tests fail
      *    3. Follow the errors to implement your new functionality
      */
@@ -77,4 +78,3 @@ describe('db unit tests', () => {
     });
   });
 });
-
