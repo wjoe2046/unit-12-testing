@@ -34,7 +34,7 @@ export const addMarket = event => (dispatch, getState) => {
   if (location) {
     dispatch({
       type: types.ADD_MARKET,
-      payload: { location, cards: 0 },
+      payload: location,
     });
   }
 };

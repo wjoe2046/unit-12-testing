@@ -34,15 +34,15 @@ describe('MegaMarkets reducer', () => {
   describe('ADD_MARKET', () => {
     const action = {
       type: 'ADD_MARKET',
-      payload: {
-        location: 'Azkaban',
-        cards: 10,
-      },
+      payload: 'Azkaban',
     };
 
     it('adds a market', () => {
       const { marketList } = subject(state, action);
-      expect(marketList[0]).toEqual(action.payload);
+      expect(marketList[0]).toEqual({
+        location: 'Azkaban',
+        cards: 0,
+      });
     });
 
     xit('increases total market count by 1', () => {

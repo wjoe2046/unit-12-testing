@@ -24,7 +24,10 @@ const marketsReducer = (state = initialState, action) => {
     case types.ADD_MARKET:
       return {
         ...state,
-        marketList: state.marketList.concat(action.payload),
+        marketList: state.marketList.concat({
+          location: action.payload,
+          cards: 0,
+        }),
         totalMarkets: state.totalMarkets + 1,
         newLocation: '',
         synced: false,
