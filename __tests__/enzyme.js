@@ -37,7 +37,7 @@ describe('React unit tests', () => {
     // LabeledText component
     // 2. It should also contain a div with two buttons
     // 3. The functions passed down should be invoked on click
-    // 4. MarketDisplay should render a div with a class of `innerbox`, and the
+    // 4. MarketDisplay should render a div with a class of `marketBox`, and the
     // interior div wrapping the two buttons should have a class of `flex`
 
   });
