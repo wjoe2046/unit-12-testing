@@ -101,6 +101,11 @@ Now we're ready to write some tests!
 - [ ] Before moving on from enzyme, set up [snapshot testing](https://jestjs.io/docs/en/snapshot-testing.html) in your React tests to prevent regression bugs (i.e., bugs in a feature that was confirmed to work correctly in the past).
 - [ ] Complete the front-end Feature/Integration tests in `__tests__/puppeteer.js`
 
+### Database testing
+A few tips for the `__tests__/db.js` tests that test the code in `/server/db/markets.js`. Look at `/server/db/markets.js`. This code is a simplified json "database" that stores the data in a json file (either `markets.dev.json` or `markets.test.json`), and also keeps a copy of the data in memory in the internal `marketList` variable (local to the file). We export the `db` object with various "database" functionality. `db.scync` is a function that writes a new market list to the json file, overwriting the previous. It also overwrites the `marketList` in memory with a new market list. The `db.scync` function utilizes helper functions `db.write` and `db.reset`. Finally, `db.find` returns the current market list in memory (i.e. from `marketList`) without looking into the file system (for speed reasons).
+
+Your goal is to test this database without it depending on the above implementation details. Your tests should work for any kind of database module with a `db` object that has the functions `sync`, `write`, etc. whether the source of the data be from a json file (as in our case) or from a real Postgres or MongoDB database.
+
 ## Extension Challenges
 Your client has complained that saving items to the database is taking too long when multiple requests hit the server at the same time. This is because our naive database implementation is using `readFileSync` and `writeFileSync`, which block the main execution thread of JavaScript while they are running. This is a horrible idea for a server that needs to serve multiple users at the same time! For the next section, we're going to refactor all of our database functions to use the async versions of the fs functions: `readFile` and `writeFile`.
 
