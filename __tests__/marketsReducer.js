@@ -70,7 +70,11 @@ describe('MegaMarkets reducer', () => {
     xit('doesn\'t touch the marketList array', () => {
     });
   });
-
+  /*
+   * Note: the rest of these tests are an EXTENSION. You should move on
+   * to Enzyme testing, and come back to these later. Optionally, you may
+   * just do ADD_CARD now, and come back to the rest of these redux tests later.
+   */
   describe('ADD_CARD', () => {
     xit('increases card count of market specified by payload', () => {
     });
@@ -84,7 +88,7 @@ describe('MegaMarkets reducer', () => {
     xit('does not mutate or duplicate other markets in marketList', () => {
     });
   });
-
+  
   describe('DELETE_CARD', () => {
     xit('decreases card count of market specified by payload', () => {
     });

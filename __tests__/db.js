@@ -51,7 +51,7 @@ describe('db unit tests', () => {
 
     /**
      *  TODO: Type validation is not yet correctly implemented! Follow the TDD
-     *  approach:
+     *  (test driven development) approach:
      *    1. Write a test describing the desired feature (db.sync returns a
      *      TypeError when the types are wrong)
      *    2. Confirm that your tests fail
@@ -64,7 +64,7 @@ describe('db unit tests', () => {
     });
   });
 
-  // TODO: Unit test the #find and #drop functions
+  // Extension TODO: Unit test the #find and #drop functions
   describe('#find', () => {
     xit('returns list of all markets from the json file', () => {
     });
