@@ -39,7 +39,10 @@ db.sync = (markets) => {
  *
  * @return {Array} the list of markets
  */
-db.find = () => marketList;
+db.find = () => {
+  db.reset();
+  return marketList;
+}
 
 
 /**
