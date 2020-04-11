@@ -1,4 +1,5 @@
 import subject from '../client/reducers/marketsReducer';
+/* eslint-disable */
 
 /**
  * One of the main benefits of reducers is how testable they are. Since they're
@@ -45,29 +46,53 @@ describe('MegaMarkets reducer', () => {
       });
     });
 
-    xit('increases total market count by 1', () => {
+    it('increases total market count by 1', () => {
+      const { totalMarkets } = subject(state, action);
+      expect(totalMarkets).toEqual(1);
     });
 
     // Remember that in Redux we never mutate. If something changes, we copy
     // the data structure! Hint: `.toBe` or `.not.toBe` are your questions.
-    xit('returns a state object not strictly equal to the original', () => {
+    it('returns a state object not strictly equal to the original', () => {
+      // compare changed object with original object... if NOT like original, do something
+      const { ...state } = subject(state, action);
+      expect({ ...state }).not.toBe(state); //if we expect that they are not alike, fail test
     });
 
-    xit('includes a marketList not strictly equal to the original', () => {
+    it('includes a marketList not strictly equal to the original', () => {
+      const { ...state } = subject(state, action);
+      const { marketList } = subject(state, action);
+      expect({ ...state.marketList }).not.toBe(marketList); //this should fail for '.toBe'
     });
 
-    xit('clears the newLocation field', () => {
+    it('clears the newLocation field', () => {
+      const { newLocation } = subject(state, action);
+      expect(newLocation).toEqual('');
     });
   });
 
   describe('UPDATE_LOCATION', () => {
-    xit('updates location with the action payload', () => {
+    const action = {
+      type: 'UPDATE_LOCATION',
+      payload: 'Azkaban',
+    };
+
+    it('updates location with the action payload', () => {
+      const { newLocation } = subject(state, action); //same as subject(state, action).newLocation
+      expect(action.payload).toEqual(newLocation); //if azkaban is azkaban... pass
     });
 
-    xit('returns a state object not strictly equal to the original', () => {
+    it('returns a state object not strictly equal to the original', () => {
+      const { ...state } = subject(state, action);
+      expect({ ...state }).not.toBe(state); //this should
     });
 
-    xit('doesn\'t touch the marketList array', () => {
+    it("doesn't touch the marketList array", () => {
+      const { marketList } = subject(state, action); //same as subject(state, action).marketList
+      expect(marketList).toBe(state.marketList); //this should
+      // ASK DURING THE APPROACH!!!
+      // console.log('marketList from destructuring : ', marketList);
+      // console.log('state.market : ', state.marketList)
     });
   });
   /*
@@ -76,31 +101,23 @@ describe('MegaMarkets reducer', () => {
    * just do ADD_CARD now, and come back to the rest of these redux tests later.
    */
   describe('ADD_CARD', () => {
-    xit('increases card count of market specified by payload', () => {
-    });
+    xit('increases card count of market specified by payload', () => {});
 
-    xit('increases total card count by 1', () => {
-    });
+    xit('increases total card count by 1', () => {});
 
-    xit('includes a marketList not strictly equal to the original', () => {
-    });
+    xit('includes a marketList not strictly equal to the original', () => {});
 
-    xit('does not mutate or duplicate other markets in marketList', () => {
-    });
+    xit('does not mutate or duplicate other markets in marketList', () => {});
   });
-  
+
   describe('DELETE_CARD', () => {
-    xit('decreases card count of market specified by payload', () => {
-    });
+    xit('decreases card count of market specified by payload', () => {});
 
-    xit('decreases total card count by 1', () => {
-    });
+    xit('decreases total card count by 1', () => {});
 
-    xit('includes a marketList not strictly equal to the original', () => {
-    });
+    xit('includes a marketList not strictly equal to the original', () => {});
 
-    xit('does not mutate or duplicate other markets in marketList', () => {
-    });
+    xit('does not mutate or duplicate other markets in marketList', () => {});
   });
 
   // The rest is functionality not included in the original MegaMarkets unit.
@@ -111,18 +128,14 @@ describe('MegaMarkets reducer', () => {
   //   2. LOAD_MARKETS only happens once, on page load, to load up markets from
   //   the database.
   describe('SYNC_MARKETS', () => {
-    xit('sets synced to true', () => {
-    });
+    xit('sets synced to true', () => {});
   });
 
   describe('LOAD_MARKETS', () => {
-    xit('replaces its marketList with the payload as-is', () => {
-    });
+    xit('replaces its marketList with the payload as-is', () => {});
 
-    xit('sets the correct totalMarkets count', () => {
-    });
+    xit('sets the correct totalMarkets count', () => {});
 
-    xit('sets the correct totalCards count', () => {
-    });
+    xit('sets the correct totalCards count', () => {});
   });
 });

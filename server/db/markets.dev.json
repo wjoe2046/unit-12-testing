@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "location": "Los Angeles",
+    "cards": 4
+  },
+  {
+    "location": "america",
+    "cards": 3
+  },
+  {
+    "location": "china",
+    "cards": 4
+  }
+]

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Here we will be unit testing the 3 main database functions from server/db/markets.js
 const fs = require('fs');
 const path = require('path');
@@ -34,19 +36,48 @@ describe('db unit tests', () => {
 
   describe('#sync', () => {
     it('writes a valid marketList to the JSON file', () => {
-      const marketList = [{ location: 'here', cards: 11 }, { location: 'there', cards: 0 }];
+      const marketList = [
+        { location: 'here', cards: 11 },
+        { location: 'there', cards: 0 },
+      ];
       const result = db.sync(marketList);
-      expect(result).not.toBeInstanceOf(Error);
+      expect(result).not.toBeInstanceOf(Error); //
       const table = JSON.parse(fs.readFileSync(testJsonFile));
       expect(table).toEqual(marketList);
     });
 
     // TODO: Finish unit testing the sync function
 
-    xit('overwrites previously existing markets', () => {
+    it('overwrites previously existing markets', () => {
+      const marketList = [
+        {
+          location: 'Los Angeles',
+          cards: 5,
+        },
+        {
+          location: 'america',
+          cards: 2,
+        },
+        {
+          location: 'china',
+          cards: 87,
+        },
+      ];
+      const result = db.write(marketList);
+      expect(result).not.toBeInstanceOf(Error);
+      const table = JSON.parse(fs.readFileSync(testJsonFile));
+      expect(table).toEqual(marketList);
     });
 
-    xit('returns an error when location and/or cards fields are not provided', () => {
+    it('returns an error when location and/or cards fields are not provided', () => {
+      const marketList = [
+        { location: 'here', cards: 11 },
+        { location: 'there', cards: 0 },
+      ];
+      const result = db.sync(marketList);
+      expect(result).not.toBeInstanceOf(Error); //
+      const table = JSON.parse(fs.readFileSync(testJsonFile));
+      expect(table).toEqual(marketList);
     });
 
     /**
@@ -57,24 +88,37 @@ describe('db unit tests', () => {
      *    2. Confirm that your tests fail
      *    3. Follow the errors to implement your new functionality
      */
-    xit('returns an error when location value is not a string', () => {
+    it('returns an error when location value is not a string', () => {
+      const marketList = [
+        { location: 'here', cards: 11 },
+        { location: 'there', cards: 0 },
+      ];
+      const result = db.sync(marketList);
+      expect(result).not.toBeInstanceOf(Error); //
+      const table = JSON.parse(fs.readFileSync(testJsonFile));
+      expect(table).toEqual(marketList);
     });
 
-    xit('returns an error when cards value is not a number', () => {
+    it('returns an error when cards value is not a number', () => {
+      const marketList = [
+        { location: 'here', cards: 11 },
+        { location: 'there', cards: 12 },
+      ];
+      const result = db.sync(marketList);
+      expect(result).not.toBeInstanceOf(Error); //
+      const table = JSON.parse(fs.readFileSync(testJsonFile));
+      expect(table).toEqual(marketList);
     });
   });
 
   // Extension TODO: Unit test the #find and #drop functions
   describe('#find', () => {
-    xit('returns list of all markets from the json file', () => {
-    });
+    xit('returns list of all markets from the json file', () => {});
 
-    xit('works if the list of markets is empty', () => {
-    });
+    xit('works if the list of markets is empty', () => {});
   });
 
   describe('#drop', () => {
-    xit('writes an empty array to the json file', () => {
-    });
+    xit('writes an empty array to the json file', () => {});
   });
 });

@@ -13,7 +13,6 @@ if (process.env.NODE_ENV === 'test') {
 
 const db = {};
 
-
 /**
  * #sync - Overwrites the current database with markets list from client
  *
@@ -22,16 +21,23 @@ const db = {};
  */
 db.sync = (markets) => {
   if (!Array.isArray(markets)) {
-    return new Error(`Market list must be an array, received ${typeof markets}`);
+    return new Error(
+      `Market list must be an array, received ${typeof markets}`
+    );
   }
-  if (markets.some(m => m.location === undefined || m.cards === undefined)) {
+  if (markets.some((m) => m.location === undefined || m.cards === undefined)) {
     return new Error('Missing fields on some markets');
+  }
+  if (markets.some((m) => typeof m.location !== 'string')) {
+    return new Error('Name should be a string');
+  }
+  if (markets.some((m) => typeof m.cards !== 'number')) {
+    return new Error('Card should be a number');
   }
   db.write(markets);
   db.reset();
   return marketList;
 };
-
 
 /**
  * #find - Returns the entire list of markets from the appropriate
@@ -42,8 +48,7 @@ db.sync = (markets) => {
 db.find = () => {
   db.reset();
   return marketList;
-}
-
+};
 
 /**
  * #drop - Deletes everything from the appropriate markets.env.json file and
@@ -54,15 +59,12 @@ db.drop = () => {
   db.write(marketList);
 };
 
-
 db.write = (data) => {
   fs.writeFileSync(writeLocation, JSON.stringify(data, null, 2));
 };
 
-
 db.reset = () => {
   marketList = JSON.parse(fs.readFileSync(writeLocation));
 };
-
 
 module.exports = db;
