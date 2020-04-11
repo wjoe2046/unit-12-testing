@@ -122,3 +122,4 @@ A user reported a new bug! Unfortunately, all they said was "the Sync button is 
 - [ ] Modify the `npm test` script so that it **lints** your code in addition to running the other tests. If there are any lint errors, the test should be counted as a failure.
 - [ ] Fix any lint errors that the lint script found so that your tests pass again.
 - [ ] It would've been really useful to have tests in place for your weekly assessments. Choose a previous assessment to get experience in setting up tests from scratch. Your tests should ensure that the specs outlined in the assessment readme are being adhered to.
+# unit-12-testing
